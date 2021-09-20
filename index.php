@@ -8,13 +8,27 @@ define("ROOT", dirname(__FILE__).DS);
 
 /* ----------------------- Implementation des classes ----------------------- */
 require_once ROOT."vendor/autoload.php";
-//require_once ROOT."class/SGBD.php";
+/* -------------------------------------------------------------------------- */
 
-/*$db = new SGBD(
-    "mysql:dbname=".$_SERVER['DB'].";host=".$_SERVER['DB_HOST'].";charset=UTF8",
-    $_SERVER['DB_USER'],
-    $_SERVER['DB_PASS'], true
-);*/
+/* -------------------------- Initialisation de PDO ------------------------- */
+$db = null;
+try {
+    // Connection à PDO
+    $db = new PDO(
+        "mysql:dbname=".$_SERVER['DB'].";host=".$_SERVER['DB_HOST'].";charset=UTF8",
+        $_SERVER['DB_USER'],
+        (isset($_SERVER['DB_PASS'])) ? $_SERVER['DB_PASS'] : null
+    );
+
+    //TODO: Prod, change PDO::ERRMODE_EXCEPTION by PDO::ERRMODE_SILENT
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+}
+// Impossible de se connecter à la BDD
+catch (PDOException $e) {
+    echo "Database connection error!!<br>";
+    echo $e->getMessage();
+}
 /* -------------------------------------------------------------------------- */
 
 /* ------------------------- Initialisation de Twig ------------------------- */
