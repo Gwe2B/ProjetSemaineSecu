@@ -1,4 +1,0 @@
-<Files ~ "^.*\.([Hh][Tt])">
-	order allow,deny
-	deny from all
-</Files>

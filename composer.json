@@ -1,0 +1,20 @@
+{
+    "name": "gwe/prjt-semaine-secu",
+    "require": {
+        "twig/twig": "^3.3"
+    },
+    "authors": [
+        {
+            "name": "marioncalpe"
+        },
+        {
+            "name": "Gwe2B"
+        },
+        {
+            "name": "Tess"
+        },
+        {
+            "name": "Wissem"
+        }
+    ]
+}
