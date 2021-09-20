@@ -29,9 +29,9 @@ $twig = new \Twig\Environment($loader, array(
 /* -------------------------------------------------------------------------- */
 /*                                   Routeur                                  */
 /* -------------------------------------------------------------------------- */
-if(isset($_GET["pageName"])) {
-    require_once ROOT."model/pageName.php";
-    $template = $twig->load("pageName.twig"); //TODO: Remplacer pageName
+if(isset($_GET["login"])) {
+    require_once ROOT."model/login.php";
+    $template = $twig->load("login.twig"); //TODO: Remplacer pageName
 }
 else {
     require_once ROOT."model/acceuil.php";
