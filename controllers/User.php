@@ -2,9 +2,8 @@
 
 /**
  * User class based on the user table of the database
- * TODO: Add __serialize & __unserialize
  * @author Gwenaël
- * @version 1
+ * @version 2
  */
 class User {
     const PHONE_REGEX = "#^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$#";
@@ -18,17 +17,25 @@ class User {
     private ?string $description;
 
     /**
-     * Class constructor by hydratation
-     * TODO: See to add another basic constructor
+     * Hydrate the instance
      * @param array $datas The datas to hydrate the class
      */
-    public function __construct(array $datas) {
+    private function hydrate(array $datas) : void {
         foreach($datas as $key=>$val) {
             $methodName = "set".ucwords($key);
             if(method_exists($this, $methodName)) {
                 $this->$methodName($val);
             }
         }
+    }
+
+    /**
+     * Class constructor by hydratation
+     * TODO: See to add some basic constructor
+     * @param array $datas The datas to hydrate the class
+     */
+    public function __construct(array $datas) {
+        $this->hydrate($datas);
     }
 
 /* -------------------------------- Accessors ------------------------------- */
@@ -98,5 +105,43 @@ class User {
         } else {
             $this->description = null;
         }
+    }
+
+/* ---------------------------- Instance methods ---------------------------- */
+    /**
+     * Serialize the class to put it in $_SESSION for example
+     * @return array An array representing the class instance
+     * @see https://www.php.net/manual/fr/language.oop5.magic.php#object.serialize
+     */
+    public function __serialize() : array {
+        return array(
+            'id' => $this->id,
+            'nom' => $this->nom,
+            'prenom' => $this->prenom,
+            'adresse' => $this->adresse,
+            'tel' => $this->tel,
+            'mail' => $this->mail,
+            'description' => $this->description
+        );
+    }
+
+    /**
+     * Unserialize the class and construct an instance from an array.
+     * The opposite of `__serialize` function.
+     * @param array $datas An array representing the instance.
+     * @see https://www.php.net/manual/fr/language.oop5.magic.php#object.unserialize
+     */
+    public function __unserialize(array $datas) : void {
+        $this->hydrate($datas);
+    }
+
+    /**
+     * Permit to obtain a string representation of the instance.
+     * TODO: Construct a string representation with the others.
+     * @return string The human readable representation of the instance.
+     * @see https://www.php.net/manual/fr/language.oop5.magic.php#object.toString
+     */
+    public function __toString() : string {
+        return "TODO";
     }
 }
