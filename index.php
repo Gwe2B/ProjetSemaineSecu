@@ -7,7 +7,7 @@ define("ROOT", dirname(__FILE__).DS);
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------- Implementation des classes ----------------------- */
-require_once ROOT."vendor/autoload.php";
+require_once ROOT."vendor".DS."autoload.php";
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------- Initialisation de PDO ------------------------- */
@@ -44,11 +44,11 @@ $twig = new \Twig\Environment($loader, array(
 /*                                   Routeur                                  */
 /* -------------------------------------------------------------------------- */
 if(isset($_GET["login"])) {
-    require_once ROOT."model/login.php";
-    $template = $twig->load("login.twig"); //TODO: Remplacer pageName
+    require_once ROOT."model".DS."login.php";
+    $template = $twig->load("login.twig");
 }
 else {
-    require_once ROOT."model/acceuil.php";
+    require_once ROOT."model".DS."acceuil.php";
     $template = $twig->load('acceuil.twig');
 }
 
