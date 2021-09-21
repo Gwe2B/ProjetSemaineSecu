@@ -2,10 +2,13 @@
 
 {% block content %}
 <form method="post" action="index.php?login" class="grid grid-cols-2">
+    {% if errMsg is not null %}
+        <p><b>Error: </b>{{ errMsg }}</p>
+    {% endif %}
     <label for="email">Addresse e-mail: </label>
-    <input type="email" name="email" id="email">
+    <input type="email" name="email" id="email" value="{{ email }}" required>
     <label for="pwd">Mot de passe: </label>
-    <input type="password" name="pwd" id="pwd">
+    <input type="password" name="pwd" id="pwd" required>
     <button type="submit">Se Connecter</button>
 </form>
 {% endblock %}

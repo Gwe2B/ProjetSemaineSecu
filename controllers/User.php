@@ -11,10 +11,10 @@ class User {
     private int $id;
     private string $nom;
     private string $prenom;
-    private ?string $adresse;
-    private ?string $tel;
+    private ?string $adresse = null;
+    private ?string $tel = null;
     private string $mail;
-    private ?string $description;
+    private ?string $description = null;
 
     /**
      * Hydrate the instance
