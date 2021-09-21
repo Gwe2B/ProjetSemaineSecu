@@ -55,6 +55,7 @@ $twig = new \Twig\Environment($loader, array(
 
 $template = null;
 if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
+    require_once ROOT."controllers".DS."User.php";
     $user = unserialize($_SESSION['user']);
 
     if(isset($_GET["disconnect"])) {

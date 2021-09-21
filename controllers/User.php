@@ -142,6 +142,6 @@ class User {
      * @see https://www.php.net/manual/fr/language.oop5.magic.php#object.toString
      */
     public function __toString() : string {
-        return "TODO";
+        return ucwords($this->prenom." ".$this->nom);
     }
 }

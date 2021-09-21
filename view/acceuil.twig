@@ -1,8 +1,17 @@
-{% extends "templates/base.twig" %}
+{% extends "templates/connected.twig" %}
 
-{% block content %}
-<h1>Hello World!!</h1>
-<p>
-    {{ greatings }}
-</p>
+{% block mainContent %}
+<div class="ui two column grid container">
+    <div class="column" style="max-width:350px;">
+        <img class="ui avatar image" style="width: 100%; height: auto;" 
+            src="https://semantic-ui.com/images/wireframe/square-image.png">
+        <h3 class="ui center aligned header">{{ user }}</h3>
+        <div class="ui left justified segment">
+            E-mail: <a href="mailto:{{ user.mail }}">{{ user.mail }}</a>
+        </div>
+    </div>
+    <div class="column">
+        TODO: Put content here
+    </div>
+</div>
 {% endblock %}

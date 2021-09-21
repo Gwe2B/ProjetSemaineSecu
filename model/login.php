@@ -14,6 +14,7 @@ if(isset($_POST['email'])&&isset($_POST['pwd'])&&
         $usr = $usrMngr->connectUser($email, $pwd);
         if($usr != null) {
             $_SESSION['user'] = serialize($usr);
+            header("Location: index.php");
         } else {
             $errMsg = ERRORS_MSG['BAD_CREDENTIALS'];
         }

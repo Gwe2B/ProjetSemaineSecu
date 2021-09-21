@@ -1,5 +1,5 @@
 <?php
 
 $pageContent = array(
-    'greatings' => "Hello everyone!!"
+    'user' => $user
 );
