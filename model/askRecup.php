@@ -5,11 +5,28 @@ use PHPMailer\PHPMailer\SMTP;
 require_once ROOT."controllers".DS."User.php";
 require_once ROOT."controllers".DS."UserManager.php";
 
+function genererChaineAleatoire($longueur = 10) {
+    return substr(
+        str_shuffle(
+            str_repeat(
+                $x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                ceil($longueur/strlen($x))
+            )
+        ),
+        1,
+        $longueur
+    );
+}
+
 $errMsg = null;
 
 if(isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    if(UserManager::getInstance($db)->userExist($_POST['email'])) {
-        //TODO: Send the mail and display a message
+    $usrMngr = UserManager::getInstance($db);
+    $usr = $usrMngr->getByMail($_POST['email']);
+    if($usr != null) {
+        $token = md5(date('Y-m-d')).genererChaineAleatoire(100);
+        $usrMngr->addLink($usr, $token);
+
         $mailer = new PHPMailer();
         $mailer->isSMTP(true); // telling the class to use SMTP
         $mailer->SMTPOptions = array(
@@ -34,6 +51,7 @@ if(isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
         $mailer->Username = $_SERVER['MAIL_USER'];
         $mailer->Password = $_SERVER['MAIL_PASS'];
 
+        $mailer->CharSet = "utf-8";
         $mailer->isHTML(true);
 
         $mailer->setFrom("instaxmaster@gmail.com", "The Master 1 Instagram");
@@ -42,7 +60,6 @@ if(isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
         $mailer->Subject = "Création d'un nouveau mot de passe.";
         $mailer->Body = '<html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <style>
             * { font-family: sans-serif; }
             .button {
@@ -61,7 +78,10 @@ if(isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
             Si la demande ne vient pas de vous, merci d\'ignorer ce message et d\'avertir
             un administrateur au plus vite.
         </p>
-        <a href="#" class="button">Lien de création du mot de passe.</a>
+        <p>
+            <strong>ATTENTION: Le lien à une validité de 24 heures!</strong>
+        </p>
+        <a href="'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'].'?recupMdp='.$token.'" class="button">Lien de création du mot de passe.</a>
     </body>
 </html>';
 
@@ -69,7 +89,8 @@ if(isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
 La génération d'un lien pour un nouveau mot de passe à été demander.\n
 Si la demande ne vient pas de vous, merci d'ignorer ce message et d'avertir
 un administrateur au plus vite.\n\n
-https://xxx";
+ATTENTION: Le lien à une validité de 24 heures!\n
+".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'].'?recupMdp='.$token;
 
         if(!$mailer->send()) {
             echo "Mailer Error: ".$mailer->ErrorInfo;

@@ -2,7 +2,12 @@
 require_once ROOT."controllers".DS."User.php";
 require_once ROOT."controllers".DS."UserManager.php";
 
-$errMsg = null;
+if(isset($_SESSION['errMsg']) && !empty($_SESSION['errMsg'])) {
+    $errMsg = $_SESSION['errMsg'];
+    unset($_SESSION['errMsg']);
+} else {
+    $errMsg = null;
+}
 
 if(isset($_POST['email'])&&isset($_POST['pwd'])&&
 !(empty($_POST['email'])||empty($_POST['pwd']))) {

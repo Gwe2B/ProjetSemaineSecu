@@ -81,6 +81,9 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
     if(isset($_GET["askRecup"])) {
         require_once ROOT."model".DS."askRecup.php";
         $template = $twig->load("askRecup.twig");
+    } else if(isset($_GET["recupMdp"]) && !empty($_GET["recupMdp"])) {
+        require_once ROOT."model".DS."recupMdp.php";
+        $template = $twig->load("recupMdp.twig");
     } else {
         require_once ROOT."model".DS."login.php";
         $template = $twig->load("login.twig");
