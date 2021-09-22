@@ -1,4 +1,9 @@
 {
     "BAD_CREDENTIALS": "Utilisateur inconnue, merci de verifier les informations saisies.",
-    "INVALID_EMAIL": "Merci de saisir une adresse mail valide."
+    "INVALID_EMAIL": "Merci de saisir une adresse mail valide.",
+    "RECUP_MESSAGE": "Un mail contenant un lien de réinitialisation sera envoyer à l'adresse si cette dernière est connue.",
+    "INVALID_LINK": "Lien Invalide ou désactiver.",
+    "INVALID_PASSWORD": "Le mot de passe ne correspond pas au pattern requis!",
+    "PASSWORD_CHANGED": "Mot de passe changer avec succés.",
+    "DIFFERENT_PASSWORD": "Les mots de passe sont différents!"
 }

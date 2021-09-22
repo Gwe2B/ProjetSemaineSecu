@@ -1,0 +1,64 @@
+{% extends "templates/base.twig" %}
+
+{% block content %}
+<div class="ui middle aligned center aligned grid" style="height: inherit;">
+    <div class="column" style="max-width: 450px;">
+        <h2>Changer mon mot de passe</h2>
+        {% if errMsg is not null %}
+        <div class="ui error message left aligned container">
+            <div class="header">Erreur:</div>
+            <p>{{ errMsg }}</p>
+        </div>
+        {% endif %}
+        <div class="ui info message left aligned container">
+            <div class="header">
+                Aide à la création du mot de passe.
+            </div>
+            <p>
+                Votre mot de passe doit contenir:
+                <ul>
+                    <li>Entre 8 et 15 caractères</li>
+                    <li>Au moins une minuscule</li>
+                    <li>Au moins une majuscule</li>
+                    <li>Au moins un caractère spéciale</li>
+                </ul>
+            </p>
+        </div>
+        <form action="index.php?recupMdp={{token}}" method="post" class="ui large form" id="form">
+            <div class="field">
+                <label for="mdp">Nouveau mot de passe:</label>
+                <input type="password" name="mdp" id="mdp"
+                    pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$"
+                    placeholder="Adresse E-mail" required>
+            </div>
+            <div class="field">
+                <label for="confirmMdp">Confirmer le mot de passe: </label>
+                <input type="password" name="confirmMdp" id="confirmMdp"
+                    pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$"
+                    placeholder="Adresse E-mail" required>
+            </div>
+            <button class="ui fluid large teal submit button" type="submit">Enregistrer</button>
+        </form>
+    </div>
+</div>
+
+<!--<script>
+let mdp = document.getElementById('mdp'),
+    confirm = document.getElementById('confirmMdp'),
+    regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$/;
+
+document.getElementById('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if(mdp.value === confirmMdp.value) {
+        if(regex.test(mdp.value)) {
+            this.submit();
+        } else {
+            alert("Le mot de passe ne correspond pas au pattern demandée!");
+        }
+    } else {
+        alert("Les deux mots de passes ne correspondent pas!");
+    }
+}, false);
+</script>-->
+{% endblock %}

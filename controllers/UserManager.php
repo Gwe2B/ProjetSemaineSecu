@@ -4,9 +4,11 @@
  * User manager class. It permit to authentified an user, to update it, add a
  * new one and more.
  * @author Gwenaël
- * @version 1
+ * @version 2
  */
 class UserManager {
+    const REGEX_PASSWORD = "#^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$#";
+
     private static $instance = null;
     private $db;
 
@@ -89,6 +91,61 @@ class UserManager {
 
         if($datas != null && password_verify($password, $datas['mdp'])) {
             $result = new User($datas);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Check if the user corresponding to the given e-mail exist
+     * @param string $mail The e-mail address to check
+     * @return User|null Return true if th user exist, otherwise return false
+     */
+    public function getByMail(string $mail) : ?User {
+        $result = null;
+
+        $query = $this->db->prepare("SELECT * FROM user WHERE mail=?");
+        $query->execute(array($mail));
+        $data = $query->fetch();
+        $query->closeCursor();
+
+        if($data != null) {
+            $result = new User($data);
+        }
+
+        return $result;
+    }
+
+    public function addLink(User $usr, string $token) : void {
+        $query = $this->db->prepare("UPDATE user SET hashRecup=?, validiteHash=DATE(NOW()) WHERE id=?");
+        $query->execute(array($token, $usr->getId()));
+    }
+
+    public function getByLink(string $token) : ?User {
+        $result = null;
+
+        $query = $this->db->prepare("SELECT * FROM user WHERE hashRecup=? AND DATEDIFF(DATE(NOW()), validiteHash) < 1");
+        $query->execute(array($token));
+        $data = $query->fetch();
+        $query->closeCursor();
+
+        if($data != null) {
+            $result = new User($data);
+        }
+
+        return $result;
+    }
+
+    public function changePassword(User $usr, string $newPassword) : bool {
+        $result = false;
+
+        if(preg_match(UserManager::REGEX_PASSWORD, $newPassword)) {
+            $result = true;
+            $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+            $query = $this->db->prepare("UPDATE user SET mdp=?, hashRecup=NULL, validiteHash=NULL WHERE id=?");
+            $query->execute(array($newPassword, $usr->getId()));
+            $query->closeCursor();
         }
 
         return $result;
