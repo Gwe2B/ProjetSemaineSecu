@@ -61,9 +61,18 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
     if(isset($_GET["disconnect"])) {
         session_destroy();
         header("Location: index.php");
-    } else if(isset($_GET["pageName"])) { //TODO change pageName
-        require_once ROOT."model".DS."pageName.php";
-        $template = $twig->load("pageName.twig");
+    } else if(isset($_GET["utilisateur"])) { 
+        require_once ROOT."model".DS."utilisateur.php";
+        $template = $twig->load("utilisateur.twig");
+
+    } else if(isset($_GET["galerie"])) { 
+        require_once ROOT."model".DS."galerie.php";
+        $template = $twig->load("galerie.twig");
+
+    } else if(isset($_GET["formulaire"])) { 
+        require_once ROOT."model".DS."formulaire.php";
+        $template = $twig->load("formulaire.twig");
+
     } else {
         require_once ROOT."model".DS."acceuil.php";
         $template = $twig->load('acceuil.twig');
