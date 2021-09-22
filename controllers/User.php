@@ -1,11 +1,14 @@
 <?php
 
+require_once "Hydrator.php";
+
 /**
  * User class based on the user table of the database
  * @author Gwenaël
  * @version 2
  */
 class User {
+    use Hydrator;
     const PHONE_REGEX = "#^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$#";
 
     private int $id;
@@ -15,19 +18,6 @@ class User {
     private ?string $tel = null;
     private string $mail;
     private ?string $description = null;
-
-    /**
-     * Hydrate the instance
-     * @param array $datas The datas to hydrate the class
-     */
-    private function hydrate(array $datas) : void {
-        foreach($datas as $key=>$val) {
-            $methodName = "set".ucwords($key);
-            if(method_exists($this, $methodName)) {
-                $this->$methodName($val);
-            }
-        }
-    }
 
     /**
      * Class constructor by hydratation
