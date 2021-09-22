@@ -7,8 +7,8 @@
  * @version 1
  */
 class UserManager {
-    private static ?UserManager $instance = null;
-    private PDO $db;
+    private static $instance = null;
+    private $db;
 
     /**
      * Constructor - Singleton

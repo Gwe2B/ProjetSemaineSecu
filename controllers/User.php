@@ -8,13 +8,13 @@
 class User {
     const PHONE_REGEX = "#^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$#";
 
-    private int $id;
-    private string $nom;
-    private string $prenom;
-    private ?string $adresse = null;
-    private ?string $tel = null;
-    private string $mail;
-    private ?string $description = null;
+    private  $id;
+    private  $nom;
+    private  $prenom;
+    private  $adresse = null;
+    private  $tel = null;
+    private  $mail;
+    private  $description = null;
 
     /**
      * Hydrate the instance
