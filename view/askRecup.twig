@@ -1,0 +1,21 @@
+{% extends "templates/base.twig" %}
+
+{% block content %}
+<div class="ui middle aligned center aligned grid" style="height: inherit;">
+    <div class="column" style="max-width: 450px;">
+        <h2>Changer mon mot de passe</h2>
+        {% if errMsg is not null %}
+        <div class="ui info message left aligned container">
+            <p>{{ errMsg }}</p>
+        </div>
+        {% endif %}
+        <form action="index.php?askRecup" method="post" class="ui large form">
+            <div class="field">
+                <label for="email">Adresse E-mail du compte:</label>
+                <input type="email" name="email" id="email" placeholder="Adresse E-mail">
+            </div>
+            <button class="ui fluid large teal submit button" type="submit">Envoyer</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

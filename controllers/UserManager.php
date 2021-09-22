@@ -93,4 +93,26 @@ class UserManager {
 
         return $result;
     }
+
+    /**
+     * Check if the user corresponding to the given e-mail exist
+     * @param string $mail The e-mail address to check
+     * @return bool Return true if th user exist, otherwise return false
+     */
+    public function userExist(string $mail) : bool {
+        $result = false;
+
+        $query = $this->db->prepare("SELECT * FROM user WHERE mail=?");
+        $query->execute(array($mail));
+        $data = $query->fetch();
+        $query->closeCursor();
+
+        if($data != null) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    public function changePassword(int $userId, string $newPassword) : void {}
 }

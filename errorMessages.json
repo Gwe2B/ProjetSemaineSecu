@@ -1,4 +1,5 @@
 {
     "BAD_CREDENTIALS": "Utilisateur inconnue, merci de verifier les informations saisies.",
-    "INVALID_EMAIL": "Merci de saisir une adresse mail valide."
+    "INVALID_EMAIL": "Merci de saisir une adresse mail valide.",
+    "RECUP_MESSAGE": "Un mail contenant un lien de réinitialisation sera envoyer à l'adresse si cette dernière est connue."
 }

@@ -11,13 +11,13 @@ class User {
     use Hydrator;
     const PHONE_REGEX = "#^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$#";
 
-    private  $id;
-    private  $nom;
-    private  $prenom;
-    private  $adresse = null;
-    private  $tel = null;
-    private  $mail;
-    private  $description = null;
+    private $id;
+    private $nom;
+    private $prenom;
+    private $adresse = null;
+    private $tel = null;
+    private $mail;
+    private $description = null;
 
     /**
      * Class constructor by hydratation
