@@ -1,2 +1,2 @@
 <?php
-$pageContente = array();
+$pageContent = array();

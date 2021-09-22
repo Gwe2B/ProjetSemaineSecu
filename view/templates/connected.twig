@@ -1,9 +1,26 @@
 {% extends "templates/base.twig" %}
 
 {% block content %}
-<header>
-    <h3>Brand</h3>
-    TODO: Make the header (navbar, brand's name, etc...)
+<header class="navbar navbar-inverse navbar-fixed-top wet-asphalt" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Barre de naviguation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://arrowjs.io"><img src="/themes/minimum/images/logo.png" alt="logo"></a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li {% if activemenu=='acceuil' %}class="active"{% endif %}><a href="">Acceuil</a></li>
+                <li {% if activemenu=='profil' %}class="active"{% endif %}><a href="?profil">Profil</a></li>
+                <li {% if activemenu=='formulaire' %}class="active"{% endif %}><a href="?formulaire">Formulaire</a></li>
+                <li {% if activemenu=='galerie' %}class="active"{% endif %}><a href="?galerie">Galerie</a></li>
+            </ul>
+        </div>
+    </div>
 </header>
 <main class="ui main fluid container">
     {% block mainContent %}{% endblock %}
