@@ -7,6 +7,15 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="./dist/semantic/semantic.min.css">
+
+    <script src="./dist/highslide/highslide-with-html.min.js"></script>
+    <link rel="stylesheet" href="./dist/highslide/highslide.css">
+
+    <script type="text/javascript">
+    hs.graphicsDir = './dist/highslide/graphics/';
+    hs.outlineType = 'rounded-white';
+    hs.wrapperClassName = 'draggable-header';
+    </script>
 </head>
 <body>
     {% block content %}{% endblock %}

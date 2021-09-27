@@ -5,9 +5,9 @@ require_once "Hydrator.php";
 /**
  * User class based on the user table of the database
  * @author Gwenaël
- * @version 2
+ * @version 3
  */
-class User {
+class User implements JsonSerializable {
     use Hydrator;
     const PHONE_REGEX = "#^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$#";
 
@@ -133,5 +133,14 @@ class User {
      */
     public function __toString() : string {
         return ucwords($this->prenom." ".$this->nom);
+    }
+
+/* ---------------------------- Redifined methods --------------------------- */
+    public function JsonSerialize() : array {
+        return array(
+            'id' => $this->id,
+            'name' => $this->nom.' '.$this->prenom,
+            'mail' => $this->mail
+        );
     }
 }
