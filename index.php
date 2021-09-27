@@ -53,31 +53,34 @@ $twig = new \Twig\Environment($loader, array(
 /* -------------------------------------------------------------------------- */
 // TODO: make a verification on the sessioned user
 
+$pageContent = array();
 $template = null;
 if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
     require_once ROOT."controllers".DS."User.php";
     $user = unserialize($_SESSION['user']);
-
+    
     if(isset($_GET["disconnect"])) {
         session_destroy();
         header("Location: index.php");
-
+        
     } else if(isset($_GET["utilisateur"])) { 
         require_once ROOT."model".DS."utilisateur.php";
         $template = $twig->load("utilisateur.twig");
-
+        
     } else if(isset($_GET["galerie"])) { 
         require_once ROOT."model".DS."galerie.php";
         $template = $twig->load("galerie.twig");
-
+        
     } else if(isset($_GET["formulaire"])) { 
         require_once ROOT."model".DS."formulaire.php";
         $template = $twig->load("formulaire.twig");
-
+        
     } else {
         require_once ROOT."model".DS."acceuil.php";
         $template = $twig->load('acceuil.twig');
     }
+
+    $pageContent['page'] = array_keys($_GET)[0];
 } else {
     if(isset($_GET["askRecup"])) {
         require_once ROOT."model".DS."askRecup.php";

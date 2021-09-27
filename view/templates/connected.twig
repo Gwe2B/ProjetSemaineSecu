@@ -17,9 +17,9 @@
 <main class="ui grid">
     <div class="four wide column">
         <div class="ui vertical fluid tabular menu">
-            <a class="item active" href="?acceuil"><i  class="home icon" ></i>Acceuil</a>
-            <a class="item" href="?utilisateur"><i  class="user icon" ></i>Profil</a>
-            <a class="item" href="?galerie"><i  class="images icon" ></i>Galerie</a>
+            <a class="item {{ (page == "acceuil") ? 'active' : '' }}" href="?acceuil"><i  class="home icon" ></i>Acceuil</a>
+            <a class="item {{ (page == "utilisateur") ? 'active' : '' }}" href="?utilisateur"><i  class="user icon" ></i>Profil</a>
+            <a class="item {{ (page == "galerie") ? 'active' : '' }}" href="?galerie"><i  class="images icon" ></i>Galerie</a>
         </div>
     </div>
     <div class="twelve wide stretched column">
