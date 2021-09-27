@@ -61,7 +61,7 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
     if(isset($_GET["disconnect"])) {
         session_destroy();
         header("Location: index.php");
-        
+
     } else if(isset($_GET["utilisateur"])) { 
         require_once ROOT."model".DS."utilisateur.php";
         $template = $twig->load("utilisateur.twig");

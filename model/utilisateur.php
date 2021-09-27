@@ -1,2 +1,4 @@
 <?php
-$pageContent = array();
+$pageContent = array(
+    'user' => $user
+);

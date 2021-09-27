@@ -1,27 +1,32 @@
 {% extends "templates/connected.twig" %}
 
 {% block mainContent %}
-<div class="ui two column grid container">
-    <div class="column" style="max-width:350px;">
-        <img class="ui avatar image" style="width: 100%; height: auto;" 
-            src="https://semantic-ui.com/images/wireframe/square-image.png">
-        <h3 class="ui center aligned header">{{ user }}</h3>
-        <div class="ui justified segment">
-            {% if user.tel is not null %}
-            Telephone: <a href="tel:{{ user.tel }}">{{ user.tel }}</a><br>
-            {% endif %}
-            E-mail: <a href="mailto:{{ user.mail }}">{{ user.mail }}</a><br>
-            {% if user.adresse is not null %}
-            Adresse: <address>{{ user.adresse }}</address>
-            {% endif %}
-            {% if user.description is not null %}
-            Telephone: <p>{{ user.description }}</p>
-            {% endif %}
-            <a href="#" class="ui button primary">Modifier</a>
+<div class="twelve wide stretched column">
+        <div class="ui segment">
+                <div class="ui two column grid container">
+            <div class="column" style="max-width:350px;">
+                <img class="ui avatar image" style="width: 100%; height: auto;" 
+                    src="https://semantic-ui.com/images/wireframe/square-image.png">
+                <h3 class="ui center aligned header">{{ user }}</h3>
+                <div class="ui justified segment">
+                    {% if user.tel is not null %}
+                    Telephone: <a href="tel:{{ user.tel }}">{{ user.tel }}</a><br>
+                    {% endif %}
+                    E-mail: <a href="mailto:{{ user.mail }}">{{ user.mail }}</a><br>
+                    {% if user.adresse is not null %}
+                    Adresse: <address>{{ user.adresse }}</address>
+                    {% endif %}
+                    {% if user.description is not null %}
+                    Telephone: <p>{{ user.description }}</p>
+                    {% endif %}
+                    <a href="#" class="ui button primary">Modifier</a>
+                </div>
+            </div>
+            <div class="column">
+                TODO: Put content here
+            </div>
+        </div>
         </div>
     </div>
-    <div class="column">
-        TODO: Put content here
-    </div>
-</div>
+    
 {% endblock %}
