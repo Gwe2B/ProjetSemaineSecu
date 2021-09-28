@@ -80,7 +80,7 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
         $template = $twig->load('acceuil.twig');
     }
 
-    $pageContent['page'] = array_keys($_GET)[0];
+    $pageContent['page'] = (isset($_GET['page'])) ? array_keys($_GET)[0] : "acceuil";
 } else {
     if(isset($_GET["askRecup"])) {
         require_once ROOT."model".DS."askRecup.php";

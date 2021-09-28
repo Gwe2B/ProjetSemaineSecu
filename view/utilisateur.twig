@@ -19,7 +19,8 @@
                     {% if user.description is not null %}
                     Telephone: <p>{{ user.description }}</p>
                     {% endif %}
-                    <a href="#" class="ui button primary">Modifier</a>
+                    <a href="index.php" class="ui button primary" style="width: 100%"
+                        onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )">Modifier</a>
                 </div>
             </div>
             <div class="column">

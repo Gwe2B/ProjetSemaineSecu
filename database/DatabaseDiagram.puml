@@ -1,0 +1,45 @@
+@startuml Database diagram
+skinparam ClassAttributeIconSize 0
+hide circle
+
+!define pk(x) <b>PK</b> <u>x</u>
+!define fk(x) <b>FK</b> #x
+!define unique(x) <b>U</b> x
+
+entity user {
+  pk(id) : INTEGER <<AUTO INCREMENT>>
+  nom : VARCHAR
+  prenom : VARCHAR
+  unique(mail) : VARCHAR
+  adresse : VARCHAR NULL
+  tel : VARCHAR NULL
+}
+
+entity image {
+  pk(id) : INTEGER <<AUTO INCREMENT>>
+  unique(path) : VARCHAR
+  fk(userId) : INTEGER
+  fk(gallerieId) : INTEGER NULL
+}
+
+entity gallerie {
+  pk(id) : INTEGER <<AUTO INCREMENT>>
+  name : VARCHAR
+}
+
+entity message {
+  pk(id) : INTEGER <<AUTO INCREMENT>>
+  date : DATETIME
+  contenue : TEXT
+  fk(expediteur) : INTEGER
+  fk(destinataire) : INTEGER
+}
+
+image }o--o| gallerie
+user }o--o| image
+user }o--o{ user
+
+user }o--o| message
+message |o--o{ user
+
+@enduml
