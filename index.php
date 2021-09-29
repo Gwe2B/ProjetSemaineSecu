@@ -75,6 +75,9 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
         require_once ROOT."model".DS."formulaire.php";
         $template = $twig->load("formulaire.twig");
         
+    } else if(isset($_GET['userUpdate'])) {
+        require_once ROOT."model".DS."userUpdate.php";
+        $template = $twig->load("userUpdate.twig");
     } else {
         require_once ROOT."model".DS."acceuil.php";
         $template = $twig->load('acceuil.twig');
