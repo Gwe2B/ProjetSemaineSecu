@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 22 sep. 2021 à 13:19
+-- Généré le : mer. 29 sep. 2021 à 09:21
 -- Version du serveur : 8.0.21
 -- Version de PHP : 8.0.10
 
@@ -63,6 +63,22 @@ CREATE TABLE IF NOT EXISTS `image` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `path` (`path`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `message`
+--
+
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE IF NOT EXISTS `message` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `contenue` varchar(255) NOT NULL,
+  `expediteur` int NOT NULL,
+  `destinataire` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
