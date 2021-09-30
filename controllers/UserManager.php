@@ -4,7 +4,7 @@
  * User manager class. It permit to authentified an user, to update it, add a
  * new one and more.
  * @author Gwenaël
- * @version 2
+ * @version 3
  */
 class UserManager {
     const REGEX_PASSWORD = "#^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$#";
@@ -146,6 +146,21 @@ class UserManager {
             $query = $this->db->prepare("UPDATE user SET mdp=?, hashRecup=NULL, validiteHash=NULL WHERE id=?");
             $query->execute(array($newPassword, $usr->getId()));
             $query->closeCursor();
+        }
+
+        return $result;
+    }
+
+    public function isPasswordCorrect(User $usr, string $password) : bool {
+        $result = false;
+
+        $query = $this->db->prepare("SELECT mdp FROM user WHERE id=?");
+        $query->execute(array($usr->getId()));
+        $data = $query->fetch();
+        $query->closeCursor();
+
+        if($data != null && password_verify($password, $data['mdp'])) {
+            $result = true;
         }
 
         return $result;

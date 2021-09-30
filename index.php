@@ -62,7 +62,7 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
     if(isset($_GET["disconnect"])) {
         session_destroy();
         header("Location: index.php");
-        
+
     } else if(isset($_GET["utilisateur"])) { 
         require_once ROOT."model".DS."utilisateur.php";
         $template = $twig->load("utilisateur.twig");
@@ -78,12 +78,15 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
     } else if(isset($_GET['userUpdate'])) {
         require_once ROOT."model".DS."userUpdate.php";
         $template = $twig->load("userUpdate.twig");
+    } else if(isset($_GET['changeMdp'])) {
+        require_once ROOT."model".DS."changeMdp.php";
+        $template = $twig->load("changeMdp.twig");
     } else {
         require_once ROOT."model".DS."acceuil.php";
         $template = $twig->load('acceuil.twig');
     }
 
-    $pageContent['page'] = (isset($_GET['page'])) ? array_keys($_GET)[0] : "acceuil";
+    $pageContent['page'] = (!empty($_GET)) ? array_keys($_GET)[0] : "acceuil";
 } else {
     if(isset($_GET["askRecup"])) {
         require_once ROOT."model".DS."askRecup.php";
