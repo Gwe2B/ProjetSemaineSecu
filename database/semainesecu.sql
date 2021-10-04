@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 29 sep. 2021 à 09:21
+-- Généré le : lun. 04 oct. 2021 à 16:44
 -- Version du serveur : 8.0.21
 -- Version de PHP : 8.0.10
 
@@ -44,6 +44,7 @@ DROP TABLE IF EXISTS `gallerie`;
 CREATE TABLE IF NOT EXISTS `gallerie` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
+  `user_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
