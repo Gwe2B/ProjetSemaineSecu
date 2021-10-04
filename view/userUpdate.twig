@@ -1,0 +1,38 @@
+{% extends "templates/popup.twig" %}
+
+{% block mainContent %}
+<style>
+    textarea {
+        resize: none !important;
+    }
+</style>
+<form action="index.php?userUpdate" method="post" class="ui form" onsubmit="return validateForm();">
+    <div class="field">
+        <label for="nom">Nom :</label>
+        <input type="text" name="nom" id="nom" value="{{ formDatas.nom }}" required>
+    </div>
+    <div class="field">
+        <label for="prenom">Prenom :</label>
+        <input type="text" name="prenom" id="prenom" value="{{ formDatas.prenom }}" required>
+    </div>
+    <div class="field">
+        <label for="mail">Adresse mail :</label>
+        <input type="email" name="mail" id="mail" value="{{ formDatas.mail }}" required>
+    </div>
+    <div class="field">
+        <label for="tel">N° de téléphone :</label>
+        <input type="tel" name="tel" id="tel" value="{{ formDatas.tel }}">
+    </div>
+    <div class="field">
+        <label for="adresse">Adresse :</label>
+        <textarea name="adresse" id="adresse" rows="4">{{ formDatas.adresse }}</textarea>
+    </div>
+    <div class="field">
+        <label for="description">Description :</label>
+        <textarea name="description" id="description" rows="4">{{ formDatas.description }}</textarea>
+    </div>
+    <button class="ui primary button" style="width:100%">Enregistrer</button>
+</form>
+
+<script src="./js/userUpdate.js"></script>
+{% endblock %}

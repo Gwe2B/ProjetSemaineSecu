@@ -1,0 +1,34 @@
+{% extends "templates/popup.twig" %}
+
+{% block mainContent %}
+
+{% if errMsg is not null %}
+<div class="ui error message left aligned container">
+    <div class="header">
+        Error!
+    </div>
+    <p>{{ errMsg }}</p>
+</div>
+{% elseif success == true %}
+<div class="ui success message left aligned container">
+    <p>Votre mot de passe à bien été mis à jour.</p>
+</div>
+{% endif %}
+<form action="index.php?changeMdp" method="post" class="ui form" onsubmit="return validateForm();">
+    <div class="field">
+        <label for="oldMdp">Mot de passe :</label>
+        <input type="password" name="oldMdp" id="oldMdp" required>
+    </div>
+    <div class="field">
+        <label for="newMdp">Nouveau mot de passe :</label>
+        <input type="password" name="newMdp" id="newMdp" required>
+    </div>
+    <div class="field">
+        <label for="confirm">Confirmer le nouveau mot de passe :</label>
+        <input type="password" name="confirm" id="confirm" required>
+    </div>
+    <button class="ui primary button" style="width:100%">Enregistrer</button>
+</form>
+
+<script src="./js/changeMdp.js"></script>
+{% endblock %}
