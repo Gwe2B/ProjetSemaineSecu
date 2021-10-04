@@ -1,0 +1,48 @@
+{% extends "templates/connected.twig" %}
+
+{% block mainContent %}
+    <div class="ui three column grid">
+    <div class="column">
+        <div class="ui segment">
+        <img>
+        </div>
+    </div>
+    <div class="column">
+        <div class="ui segment">
+        <img>
+        </div>
+    </div>
+    <div class="column">
+        <div class="ui segment">
+        <img>
+        </div>
+    </div>
+</div>
+    <div class="twelve wide stretched column">
+        <div class="ui segment">
+            <form action="/ma-page-de-traitement" method="post" enctype="multipart/form-data" class="ui large form">
+                <div class="field">
+                    <label for="title">Titre :</label>
+                    <input type="text" id="title" name="title_message" required>
+                </div>
+                
+                <div>
+                    <label for="picture">Photo :</label>
+                    <input type="file" id="picture" name="picture_message" accept="image/*" required>
+                </div>
+                <div>
+                    <label for="confident">Confidentialité :</label>
+                    <select name="confident" required>
+                        <option value="prive">Privé</option>
+                        <option selected value="public">Public</option>
+                        <option value="ami">Amis</option>
+                    </select >
+                </div>
+                <div>
+                    <label for="description">description :</label>
+                    <textarea id="description" name="description_message"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
