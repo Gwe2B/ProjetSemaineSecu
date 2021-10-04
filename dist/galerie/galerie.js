@@ -3,9 +3,10 @@ function DisplayImages(id) {
 	    titregalerie = "titregal" + id,
 		addImg = document.createElement('a');
 
-	addImg.href = "";
+	addImg.href = "index.php?ajoutImage&gallerie="+id;
 	addImg.innerText = "Ajouter une image";
 	addImg.classList.add("ui","fluid","large","primary","submit","button");
+	addImg.setAttribute('onclick', "return hs.htmlExpand(this, { objectType: 'iframe' } )");
 	document.getElementById('display').appendChild(addImg);
 
 	$('.galerie').addClass('hide');

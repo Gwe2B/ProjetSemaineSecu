@@ -1,48 +1,43 @@
-{% extends "templates/connected.twig" %}
+{% extends "templates/popup.twig" %}
 
 {% block mainContent %}
-    <div class="ui three column grid">
-    <div class="column">
-        <div class="ui segment">
-        <img>
-        </div>
-    </div>
-    <div class="column">
-        <div class="ui segment">
-        <img>
-        </div>
-    </div>
-    <div class="column">
-        <div class="ui segment">
-        <img>
-        </div>
-    </div>
-</div>
-    <div class="twelve wide stretched column">
-        <div class="ui segment">
-            <form action="/ma-page-de-traitement" method="post" enctype="multipart/form-data" class="ui large form">
-                <div class="field">
-                    <label for="title">Titre :</label>
-                    <input type="text" id="title" name="title_message" required>
-                </div>
-                
-                <div>
-                    <label for="picture">Photo :</label>
-                    <input type="file" id="picture" name="picture_message" accept="image/*" required>
-                </div>
-                <div>
-                    <label for="confident">Confidentialité :</label>
-                    <select name="confident" required>
-                        <option value="prive">Privé</option>
-                        <option selected value="public">Public</option>
-                        <option value="ami">Amis</option>
-                    </select >
-                </div>
-                <div>
-                    <label for="description">description :</label>
-                    <textarea id="description" name="description_message"></textarea>
-                </div>
-            </form>
-        </div>
-    </div>
+	{% if errMsg is not null %}
+		<div class="ui error message left aligned container">
+			<div class="header">
+				Error!
+			</div>
+			<p>{{ errMsg }}</p>
+		</div>
+	{% endif %}
+	<form action="index.php?ajoutImage&gallerie={{gallerie}}" method="post"
+        enctype="multipart/form-data" class="ui large form">
+
+		{#<div class="field">
+			<label for="title">Titre :</label>
+			<input type="text" id="title" name="title" value="{{ form.title }}" required>
+		</div>#}
+
+		<div class="field">
+			<label for="picture">Photo :</label>
+			<input type="file" id="picture" name="picture" accept="image/*" required
+                data-tooltip="Formats accépté: TIF, TIFF, BMP, JPG, JPEG, GIF, PNG"
+                data-position="top left">
+		</div>
+
+		<div class="field">
+			<label for="confident">Confidentialité :</label>
+			<select name="confident" required>
+				<option value="private">Privé</option>
+				<option selected value="public">Public</option>
+				<option value="friend">Amis</option>
+			</select>
+		</div> <br>
+		{#
+            <div>
+                <label for="description">description :</label>
+                <textarea id="description" name="description_message"></textarea>
+            </div>
+        #}
+        <button type="submit" class="ui fluid large primary submit button">Upload</button>
+	</form>
 {% endblock %}
