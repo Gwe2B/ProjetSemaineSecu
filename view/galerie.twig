@@ -1,7 +1,7 @@
 {% extends "templates/connected.twig" %}
 
 {% block mainContent %}
-	<div class="ui rounded images">
+	<div class="ui rounded images" id="display">
 		{% for galerie in galeries %}
 			<div class="galerie conteneur_img ui image large rounded">
 				<a href="#" onclick="DisplayImages({{galerie.id}});return false;" class="lien">
