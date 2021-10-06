@@ -34,6 +34,10 @@ class ImageManager {
     }
 
 /* ------------------------------ Class methods ----------------------------- */
+    /**
+     * Add an image to the database
+     * @param Image $img The image to insert into the database
+     */
     public function addImage(Image $img) : void {
         $query = $this->db->prepare(
             "INSERT INTO image(path, visibility, user_id, gallerie_id)

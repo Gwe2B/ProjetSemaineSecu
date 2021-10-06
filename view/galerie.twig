@@ -12,10 +12,13 @@
 
 			<h1 class="titregal{{galerie.id}} titregal hide">{{galerie.name}}</h1>
 			{% for image in galerie.images %}
-				<div class="photo{{galerie.id}} photos conteneur_img ui image medium rounded hide">
+				<div class="photo{{galerie.id}} photos conteneur_img ui left corner labeled image medium rounded hide">
 					<a href="uploads/{{image.path}}" data-lightbox="mygallery" data-title="{{galerie.name}}">
-						<img class="" src="uploads/{{image.path}}">
+						<img class="" src="uploads/{{image.path}}" style="max-height: 160px;">
 					</a>
+					<div class="ui left corner label">
+						<i class="{{ image.getIconVisibility }} icon"></i>
+					</div>
 				</div>
 			{% endfor %}
 		{% endfor %}

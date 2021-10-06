@@ -11,7 +11,7 @@ abstract class ImageUploader {
      * @var array(string)
      */
     private const VALID_EXT = array(
-        "TIF", "TIFF", "BMP", "JPG", "JPEG", "GIF", "PNG"
+        "TIF", "TIFF", "BMP", "JPG", "JPEG", "GIF", "PNG", "WEBP"
     );
 
     /**
@@ -21,6 +21,13 @@ abstract class ImageUploader {
      */
     private const MAX_SIZE = 100000000;
 
+    /**
+     * Upload an image and put it into the specified folder
+     * @param string $destFolder The destination folder
+     * @param array $file The file to upload
+     * @return string|null null if the systeme was unable to upload the file,
+     *  otherwise, return the name of the file.
+     */
     public static function uploadImage(string $destFolder, array $file) : ?string {
         $result = null;
 

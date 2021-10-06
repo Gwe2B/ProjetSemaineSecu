@@ -6,7 +6,7 @@ require_once "Image.php";
 /**
  * User class based on the user table of the database
  * @author Wissam
- * @version 1
+ * @version 2
  */
  
 class Galerie {
@@ -16,6 +16,7 @@ class Galerie {
     private $id;
     private $name;
 	private $images;
+    private $user_id;
 
     /**
      * Class constructor by hydratation
@@ -36,6 +37,9 @@ class Galerie {
 	public function getImages() : ?array
     { return $this->images;}
 
+    public function getUser_Id() : int
+    { return $this->user_id; }
+
 /* -------------------------------- Mutators -------------------------------- */
     protected function setId(int $val) {
         if($val > 0) {
@@ -55,5 +59,9 @@ class Galerie {
         }
     }
 
-
+    protected function setUser_Id(int $val) {
+        if($val > 0) {
+            $this->user_id = $val;
+        }
+    }
 }

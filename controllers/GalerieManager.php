@@ -66,7 +66,7 @@ class GalerieManager {
             WHERE id=?"
         );
         $query->execute(array(
-            $gal->getNom(),
+            $gal->getName(),
             $gal->getId()
         ));
         $query->closeCursor();

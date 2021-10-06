@@ -17,6 +17,8 @@ class Image {
         'public'  => 1
     );
 
+    private const VISIBILITY_ICON = array("eye slash", "address book", "eye");
+
     private $id;
     private $user_id;
     private $gallerie_id;
@@ -49,6 +51,10 @@ class Image {
 
         return $result;
     } 
+
+    public function getIconVisibility() : string {
+        return self::VISIBILITY_ICON[$this->visibility + 1];
+    }
 
 /* -------------------------------- Accessors ------------------------------- */
     public function getId() : int
