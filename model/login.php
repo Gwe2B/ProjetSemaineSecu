@@ -3,11 +3,13 @@ require_once ROOT."controllers".DS."User.php";
 require_once ROOT."controllers".DS."UserManager.php";
 
 if(isset($_SESSION['errMsg']) && !empty($_SESSION['errMsg'])) {
-    $errMsg = $_SESSION['errMsg'];
+    $sessionMsg = $_SESSION['errMsg'];
     unset($_SESSION['errMsg']);
 } else {
-    $errMsg = null;
+    $sessionMsg = null;
 }
+
+$errMsg = null;
 
 if(isset($_POST['email'])&&isset($_POST['pwd'])&&
 !(empty($_POST['email'])||empty($_POST['pwd']))) {
@@ -30,5 +32,6 @@ if(isset($_POST['email'])&&isset($_POST['pwd'])&&
 
 $pageContent = array(
     'email' => isset($_POST['email']) ? $_POST['email'] : "",
+    'sessionMsg' => $sessionMsg,
     'errMsg' => $errMsg
 );

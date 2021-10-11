@@ -51,7 +51,7 @@ class User implements JsonSerializable {
     { return $this->description; }
 
 /* -------------------------------- Mutators -------------------------------- */
-    protected function setId(int $val) {
+    public function setId(int $val) {
         if($val > 0) {
             $this->id = $val;
         }

@@ -1,0 +1,38 @@
+{% extends "templates/base.twig" %}
+
+{% block content %}
+<div class="ui middle aligned center aligned grid" style="height: inherit;">
+    <div class="column" style="max-width: 450px;">
+        <h2><i class="user plus icon"></i>Créer un compte</h2>
+        {% if errMsg is not null %}
+        <div class="ui error message left aligned container">
+            <div class="header">
+                Error!
+            </div>
+            <p>{{ errMsg }}</p>
+        </div>
+        {% endif %}
+        <form action="index.php?createUser" method="post" class="ui large form">
+            {# User creation #}
+            <div class="field">
+                <input type="email" name="email" placeholder="Votre adresse E-mail" required>
+            </div>
+            <div class="field">
+                <input type="text" name="nom" placeholder="Votre nom" required>
+            </div>
+            <div class="field">
+                <input type="text" name="prenom" placeholder="Votre Prénom" required>
+            </div>
+
+            {# Password Création #}
+            <div class="field">
+                <input type="password" name="mdp" placeholder="Créer un mot de passe" required>
+            </div>
+            <div class="field">
+                <input type="password" name="confirmMdp" placeholder="Confirmer le mot de passe" required>
+            </div>
+            <button class="ui fluid large teal submit button" type="submit">Créer le compte</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

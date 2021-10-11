@@ -92,7 +92,10 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
 
     $pageContent['page'] = (!empty($_GET)) ? array_keys($_GET)[0] : "acceuil";
 } else {
-    if(isset($_GET["askRecup"])) {
+    if(isset($_GET['createUser'])) {
+        require_once ROOT."model".DS."createUser.php";
+        $template = $twig->load("createUser.twig");
+    } else if(isset($_GET["askRecup"])) {
         require_once ROOT."model".DS."askRecup.php";
         $template = $twig->load("askRecup.twig");
     } else if(isset($_GET["recupMdp"]) && !empty($_GET["recupMdp"])) {

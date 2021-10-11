@@ -11,6 +11,10 @@
             </div>
             <p>{{ errMsg }}</p>
         </div>
+        {% elseif sessionMsg is not null %}
+        <div class="ui success message left aligned container">
+            <p>{{ sessionMsg }}</p>
+        </div>
         {% endif %}
         <form action="index.php?login" method="post" class="ui large form">
             <div class="field">
@@ -26,7 +30,10 @@
                 </div>
             </div>
             <button class="ui fluid large teal submit button" type="submit">Connection</button>
-			<a href="index.php?askRecup">J'ai oublié mon mot de passe.</a>
+			<p style="display: flex; justify-content:space-between;">
+                <a href="index.php?createUser">Créer un compte</a>
+                <a href="index.php?askRecup">J'ai oublié mon mot de passe.</a>
+            </p>
         </form>
     </div>
 </div>

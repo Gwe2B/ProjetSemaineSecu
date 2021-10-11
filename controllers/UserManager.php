@@ -74,6 +74,27 @@ class UserManager {
     }
 
     /**
+     * Add an user to the database
+     * @param User $usr The user to add into the database
+     * @return void
+     */
+    public function createUser(User $usr) : void {
+        $query = $this->db->prepare(
+            "INSERT INTO user(mail, nom, prenom) VALUE(?,?,?)"
+        );
+
+        $query->execute(array(
+            $usr->getMail(),
+            $usr->getNom(),
+            $usr->getPrenom()
+        ));
+
+        $usr->setId($this->db->lastInsertId());
+
+        $query->closeCursor();
+    }
+
+    /**
      * Retrieve a user from his email if his password is correct
      * @param string $mail The user email
      * @param string $password The user password
