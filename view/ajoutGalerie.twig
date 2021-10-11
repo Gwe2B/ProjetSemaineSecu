@@ -1,0 +1,27 @@
+{% extends "templates/popup.twig" %}
+
+{% block mainContent %}
+	{% if errMsg is not null %}
+		<div class="ui error message left aligned container">
+			<div class="header">
+				Error!
+			</div>
+			<p>{{ errMsg }}</p>
+		</div>
+	{% endif %}
+	<form action="index.php?ajoutGalerie" method="post"
+        enctype="multipart/form-data" class="ui large form">
+
+		{#<div class="field">
+			<label for="title">Titre :</label>
+			<input type="text" id="title" name="title" value="{{ form.title }}" required>
+		</div>#}
+
+		<div class="field">
+			<label for="picture">Titre de la nouvelle galerie :</label>
+				<input type="text" name="nom" placeholder="titre">
+		</div>
+
+        <button type="submit" class="ui fluid large primary submit button">Ajouter</button>
+	</form>
+{% endblock %}

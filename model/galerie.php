@@ -6,6 +6,7 @@ $gm = GalerieManager::getInstance($db);
 
 $pageContent = array(
     'galeries'=> $gm->getByUserId($user->getId()),
+	'galeriesVides'=> $gm->getEmptyGaleriesByUserId($user->getId()),
 );
 
-//var_dump($gm->getByUserId($user->getId()));
+//var_dump($gm->getEmptyGaleriesByUserId($user->getId()));
