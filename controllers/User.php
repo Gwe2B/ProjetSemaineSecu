@@ -18,6 +18,8 @@ class User implements JsonSerializable {
     private $tel = null;
     private $mail;
     private $description = null;
+    private $friends;
+
 
     /**
      * Class constructor by hydratation
@@ -38,7 +40,7 @@ class User implements JsonSerializable {
     public function getPrenom() : string
     { return $this->prenom; }
 
-    public function getAdresse() : ?string 
+    public function getAdresse() : ?string
     { return $this->adresse; }
 
     public function getTel() : ?string
@@ -49,6 +51,10 @@ class User implements JsonSerializable {
 
     public function getDescription() : ?string
     { return $this->description; }
+
+    public function getFriends() : ?array
+    { return $this->friends; }
+
 
 /* -------------------------------- Mutators -------------------------------- */
     public function setId(int $val) {
@@ -96,6 +102,13 @@ class User implements JsonSerializable {
             $this->description = null;
         }
     }
+
+    public function setFriends(array $val) {
+        if(!empty($val)) {
+            $this->friends = $val;
+        }
+    }
+
 
 /* ---------------------------- Instance methods ---------------------------- */
     /**
