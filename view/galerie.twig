@@ -2,20 +2,25 @@
 
 {% block mainContent %}
 	<div class="ui rounded images" id="display">
+	
+	<!-- Ensemble des galeries et leurs photos -->
+	
+        {% if galeries is not null %}	
 		{% for galerie in galeries %}
 			<div class="galerie conteneur_img ui image large rounded">
-				<a href="#" onclick="DisplayImages({{galerie.id}});return false;" class="lien">
+				<a href="#" onclick="DisplayImages({{galerie.id}});return false" class="lien">
 					<img class="" src="uploads/{{galerie.images[0].path}}">
 					<div class="ui bottom attached label banniere">{{galerie.name}}</div>
 				</a>
 			</div>
 
 			<h1 class="titregal{{galerie.id}} titregal hide">{{galerie.name}}</h1>
+			
 			{% for image in galerie.images %}
 				<div class="photo{{galerie.id}} photos conteneur_img ui image medium rounded hide" style="padding:auto;">
 				<div class="ui left corner labeled">
 					<a href="uploads/{{image.path}}" data-lightbox="mygallery" data-title="{{galerie.name}}">
-						<img class="" src="uploads/{{image.path}}" style="max-height: 160px;">
+						<img src="uploads/{{image.path}}">
 					</a>
 					<div class="ui left corner label">
 						<i class="{{ image.getIconVisibility }} icon"></i>
@@ -24,6 +29,36 @@
 				</div>
 			{% endfor %}
 		{% endfor %}
+		{% endif %}
+		
+		<!-- Le bouton ajouter nouvelle image -->
+		
+		<div class="photoPlus photos conteneur_img ui left corner labeled image medium rounded hide">
+			<a id="btn_addImg">
+				<img src="dist/images/plus.png">
+			</a>
+		</div>
+		
+		<!-- Ensemble des galeries vides -->
+		
+		{% if galeriesVides is not null %}	
+		{% for galerieVide in galeriesVides %}
+		     <div id="container_plus" class="galerie conteneur_img ui image large rounded">
+				<a href="#" onclick="DisplayImages({{galerieVide.id}});return false" class="lien">
+					<img id="imgcamera" src="dist/images/camera.png">
+					<div class="ui bottom attached label banniere">{{galerieVide.name}}</div>
+				</a>
+			</div>
+		{% endfor %}
+		{% endif %}
+		
+		<!-- Le bouton ajouter nouvelle galerie -->
+		
+		    <div id="container_plus" class="galerie conteneur_img ui image large rounded">
+				<a href="index.php?ajoutGalerie" onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" class="lien">
+					<img id="imgplus" src="dist/images/plus.png">
+				</a>
+			</div>
 	</div>
 
 	<link rel="stylesheet" href="./dist/galerie/galerie.css">

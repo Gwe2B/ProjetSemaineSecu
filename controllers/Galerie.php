@@ -64,4 +64,8 @@ class Galerie {
             $this->user_id = $val;
         }
     }
+	
+	public function call_setUser_Id(int $val){
+		$this->setUser_Id($val);
+	}
 }

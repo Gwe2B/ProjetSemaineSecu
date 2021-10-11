@@ -100,6 +100,7 @@ class GalerieManager {
 			foreach($datas as $row) {
 				
 				$gal = new Galerie($row);
+				$gal->call_setUser_Id($UserId);
 						
                 $query1->execute(array($gal->getId()));
                 $datas1 = $query1->fetchAll();                
@@ -123,6 +124,52 @@ class GalerieManager {
         }
 
         return $galeries;
+    }
+	
+	public function getEmptyGaleriesByUserId(int $UserId) : ?array {
+        
+		$emptyGaleries = null;
+
+        $query = $this->db->prepare("SELECT g.id, g.name, g.user_id FROM gallerie g LEFT OUTER JOIN image i ON g.id = i.gallerie_id where g.user_id=? and i.id is null");
+        $query->execute(array($UserId));
+        $datas = $query->fetchAll();
+        $query->closeCursor();
+	 
+	 
+        if($datas != null) {
+			
+			$emptyGaleries = array();
+			$gal = null;
+			
+			foreach($datas as $row) {
+				
+				$gal = new Galerie($row);
+				$gal->call_setUser_Id($UserId);
+				array_push($emptyGaleries, $gal);
+           
+			}
+
+        }
+
+        return $emptyGaleries;
+    }
+	
+	 /**
+     * Add a galerie to the database
+     * @param Galerie $gal The galerie to insert into the database
+     */
+    public function addGalerie(Galerie $gal) : void {
+        $query = $this->db->prepare(
+            "INSERT INTO gallerie(name, user_id)
+            VALUE(?, ?)"
+        );
+
+        $query->execute(array(
+            $gal->getName(),
+            $gal->getUser_Id()
+        ));
+
+        $query->closeCursor();
     }
 	
 	/**

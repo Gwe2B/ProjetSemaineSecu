@@ -75,6 +75,10 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
         require_once ROOT."model".DS."ajoutImage.php";
         $template = $twig->load("ajoutImage.twig");
         
+    } else if(isset($_GET["ajoutGalerie"])) { 
+        require_once ROOT."model".DS."ajoutGalerie.php";
+        $template = $twig->load("ajoutGalerie.twig");
+        
     } else if(isset($_GET["formulaire"])) { 
         require_once ROOT."model".DS."formulaire.php";
         $template = $twig->load("formulaire.twig");
