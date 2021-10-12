@@ -186,4 +186,49 @@ class UserManager {
 
         return $result;
     }
+
+    /* Recuperation des amis */
+
+    public function getFriendsByUserId(int $userId) : ?array {
+        $friends = null;
+
+        $query = $this->db->prepare("SELECT CASE WHEN f.user_id=? THEN f.friend_id ELSE f.user_id END AS id
+        FROM friends f WHERE
+        (
+            f.user_id=?
+        ) OR (
+            f.friend_id=?
+        )
+        GROUP by id");
+
+        $query->execute(array($userId,$userId,$userId));
+        $data = $query->fetchAll();
+        $query->closeCursor();
+
+        if($data != null) {
+
+          $friends = array();
+          $friend = null;
+
+          $query1 = $this->db->prepare("SELECT * FROM user u WHERE u.id=?");
+
+          foreach ($data as $row) {
+
+            $query1->execute(array(implode($row)));
+            $data1 = $query1->fetch();
+
+            if($data1 != null) {
+              $friend = new User($data1);
+            }
+
+            array_push($friends, $friend);
+          }
+
+          $query1->closeCursor();
+        }
+
+        return $friends;
+    }
+
+
 }
