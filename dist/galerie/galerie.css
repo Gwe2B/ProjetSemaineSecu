@@ -105,6 +105,10 @@
 		  display: flex;
 		  flex-direction: column;
 		}
+		
+		i.icon {
+			color: grey;
+		}
 	  
 	  
 	  

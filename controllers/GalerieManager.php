@@ -48,11 +48,38 @@ class GalerieManager {
         $query->closeCursor();
 
         if($datas != null) {
-            $result = new Galerie($datas);
+            
+			$result = new Galerie($datas);
+			$images = $this->getImagesByGalerieId($result->getId());
+			$result->setImages($images);
         }
 
         return $result;
     }
+	
+	public function getImagesByGalerieId(int $galId) : ?array {
+        
+		$images = null;
+
+        $query = $this->db->prepare("SELECT * FROM image WHERE gallerie_id=?");
+        $query->execute(array($galId));
+        $datas = $query->fetchAll();
+        $query->closeCursor();
+
+        if($datas != null) {
+			
+			$images = array();
+			
+			foreach($datas as $row) {
+				$img= new Image($row);
+				array_push($images, $img);
+			}
+        }
+
+        return $images;
+    }
+	
+	
 
     /**
      * Update the galerie into the database
@@ -170,6 +197,34 @@ class GalerieManager {
         ));
 
         $query->closeCursor();
+    }
+	
+	/**
+     * Remove a galerie to the database and all its images
+     * @param int $data The galerie id to remove from the database
+     */
+    public function removeGalerie(Galerie $gal) : void {
+	
+        $images = $gal->getImages();
+		
+		if($images !=null) {
+	
+	    foreach($images as $img) {
+			
+       // echo("***  ".$img->getPath());
+		
+		$query1 = $this->db->prepare("DELETE FROM image WHERE id=?");
+        $query1->execute(array($img->getId()));
+        $query1->closeCursor();
+		unlink(ROOT."uploads".DS.$img->getPath());
+          
+		}
+        }		
+        
+		$query2 = $this->db->prepare("DELETE FROM gallerie WHERE id=?");
+        $query2->execute(array($gal->getId()));
+        $query2->closeCursor();
+		
     }
 	
 	/**

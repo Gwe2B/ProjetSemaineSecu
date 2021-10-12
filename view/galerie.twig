@@ -8,11 +8,16 @@
 	
         {% if galeries is not null %}	
 		{% for galerie in galeries %}
+
 			<div class="galerie conteneur_img ui image large rounded">
 				<a href="#" onclick="DisplayImages({{galerie.id}});return false" class="lien">
 					<img class="" src="uploads/{{galerie.images[0].path}}">
 					<div class="ui bottom attached label banniere">{{galerie.name}}</div>
 				</a>
+				<div class="adminPane">
+					<a href="#"><i class="pencil alternate icon"></i></a>
+					<a href="#" onclick="removeGal({{ galerie.id }})"><i class="trash icon"></i></a>
+				</div>
 			</div>
 
 			<h1 class="titregal{{galerie.id}} titregal hide">{{galerie.name}}</h1>
@@ -54,6 +59,10 @@
 					<img id="imgcamera" src="dist/images/camera.png">
 					<div class="ui bottom attached label banniere">{{galerieVide.name}}</div>
 				</a>
+				<div class="adminPane">
+					<a href="#"><i class="pencil alternate icon"></i></a>
+					<a href="#" onclick="removeGal({{ galerieVide.id }})"><i class="trash icon"></i></a>
+				</div>
 			</div>
 		{% endfor %}
 		{% endif %}
