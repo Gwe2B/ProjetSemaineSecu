@@ -30,22 +30,26 @@ function DisplayImages(id) {
 }
 
 function removeImg(id) {
-	$.ajax({
-		'url':'index.php?ajax=removeImg',
-		'dataType':'json',
-		'type':'GET',
-		'data':{
-			'imgId': id
-		},
-		'success':function(data) {
-			if(data.result) {
-				document.getElementById(id).remove();
-			} else {
-				alert("Impossible de supprimer l'image.");
+	let continuer = confirm("Etes-vous sure de voulir la supprimer ?");
+
+	if(continuer) {
+		$.ajax({
+			'url':'index.php?ajax=removeImg',
+			'dataType':'json',
+			'type':'GET',
+			'data':{
+				'imgId': id
+			},
+			'success':function(data) {
+				if(data.result) {
+					document.getElementById(id).remove();
+				} else {
+					alert("Impossible de supprimer l'image.");
+				}
+			},
+			'error':function(request, error) {
+				alert(error);
 			}
-		},
-		'error':function(request, error) {
-			alert(error);
-		}
-	});
+		});
+	}
 }
