@@ -30,7 +30,7 @@ function DisplayImages(id) {
 }
 
 function removeImg(id) {
-	let continuer = confirm("Etes-vous sure de voulir la supprimer ?");
+	let continuer = confirm("Etes-vous sure de vouloir la supprimer ?");
 
 	if(continuer) {
 		$.ajax({
