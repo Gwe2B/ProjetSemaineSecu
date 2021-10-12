@@ -1,6 +1,15 @@
 {% extends "templates/connected.twig" %}
 
 {% block mainContent %}
+	<style>
+	.adminPane {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: flex;
+		flex-direction: column;
+	}
+	</style>
 	<div class="ui rounded images" id="display">
 	
 	<!-- Ensemble des galeries et leurs photos -->
@@ -17,14 +26,19 @@
 			<h1 class="titregal{{galerie.id}} titregal hide">{{galerie.name}}</h1>
 			
 			{% for image in galerie.images %}
-				<div class="photo{{galerie.id}} photos conteneur_img ui image medium rounded hide" style="padding:auto;">
-				<div class="ui left corner labeled">
-					<a href="uploads/{{image.path}}" data-lightbox="mygallery" data-title="{{galerie.name}}">
-						<img src="uploads/{{image.path}}">
-					</a>
-					<div class="ui left corner label">
-						<i class="{{ image.getIconVisibility }} icon"></i>
-					</div>
+				<div class="photo{{galerie.id}} photos conteneur_img ui image medium rounded hide" style="padding:auto;" id="{{image.id}}">
+					<div class="ui left corner labeled">
+						<a href="uploads/{{image.path}}" data-lightbox="mygallery" data-title="{{galerie.name}}"
+						class="ui right corner labeled">
+							<img src="uploads/{{image.path}}">
+						</a>
+						<div class="adminPane">
+							<a href="#"><i class="pencil alternate icon"></i></a>
+							<a href="#" onclick="removeImg({{ image.id }})"><i class="trash icon"></i></a>
+						</div>
+						<div class="ui left corner label">
+							<i class="{{ image.getIconVisibility }} icon"></i>
+						</div>
 					</div>
 				</div>
 			{% endfor %}
