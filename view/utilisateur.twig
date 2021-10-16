@@ -25,8 +25,30 @@
                         onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )">Changer le mot de passe</a>
                 </div>
             </div>
-            <div class="column">
-                TODO: Put content here
+            <div class="column" style="position: absolute; right: 10px; width: 300px; padding: 10px;">
+                <div class="ui card" style="position: absolute; right: 0px; width: 300px; padding: 10px;">
+          <h1 style="  text-align: center; font-size: 40px"><i class="users icon"></i></h1>
+          <div class="content">
+              <div class="meta">
+                  <div role="list" class="ui divided relaxed list">
+                      {% for friend in friends %}
+
+                              <div role="listitem" class="item">
+                                  <i aria-hidden="true" class="user large icon middle aligned"></i>
+                                  <div class="content">
+                                    <a class="header">{{friend.nom}}  {{friend.prenom}}</a>
+                                  </div>
+                              </div>
+                      {% endfor %}
+                  </div>
+                  <div class="ui bottom attached button" style="  margin-top: 320px;">
+                        <i class="add icon"></i>
+                        Add Friend
+                  </div>
+
+             </div>
+          </div> 
+                
             </div>
         </div>
         </div>
