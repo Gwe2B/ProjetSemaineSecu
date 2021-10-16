@@ -1,0 +1,15 @@
+{% extends "templates/popup.twig" %}
+
+{% block mainContent %}
+<form action="index.php?editImg&imageId={{image.id}}" method="post">
+    <div class="field">
+        <label for="confident">Confidentialité :</label>
+        <select name="confident" required>
+            <option {{(image.getStringVisibility == "private") ? "selected" : ""}} value="private">Privé</option>
+            <option {{(image.getStringVisibility == "public") ? "selected" : ""}} value="public">Public</option>
+            <option {{(image.getStringVisibility == "friend") ? "selected" : ""}} value="friend">Amis</option>
+        </select>
+    </div>
+    <button type="submit" class="ui fluid large primary submit button">Modifier</button>
+</form>
+{% endblock %}

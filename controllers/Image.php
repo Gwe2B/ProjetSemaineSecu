@@ -56,6 +56,10 @@ class Image {
         return self::VISIBILITY_ICON[$this->visibility + 1];
     }
 
+    public function getStringVisibility() : false|string {
+        return array_search($this->visibility, self::VISIBILITY);
+    }
+
 /* -------------------------------- Accessors ------------------------------- */
     public function getId() : int
     { return $this->id; }

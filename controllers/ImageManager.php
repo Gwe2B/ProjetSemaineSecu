@@ -69,6 +69,12 @@ class ImageManager {
         $query->closeCursor();
     }
 
+    public function updateImage(Image $img) : void {
+        $query = $this->db->prepare("UPDATE image SET visibility=? WHERE id=?");
+        $query->execute(array($img->getVisibility(), $img->getId()));
+        $query->closeCursor();
+    }
+
     /**
      * Remove an image to the database
      * @param int $data The image id to remove from the database
