@@ -66,6 +66,8 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
         $requete = htmlspecialchars($_GET["ajax"]);
         if($requete === "removeImg") {
             require_once ROOT."ajax".DS."removeImg.php";
+        } else if($requete === "removeGal") {
+            require_once ROOT."ajax".DS."removeGal.php";
         } else {
             //todo find a way to send 404 error
         }
