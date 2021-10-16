@@ -33,7 +33,7 @@
 							<img src="uploads/{{image.path}}">
 						</a>
 						<div class="adminPane">
-							<a href="#"><i class="pencil alternate icon"></i></a>
+							<a href="index.php?editImg&imageId={{ image.id }}" onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )"><i class="pencil alternate icon"></i></a>
 							<a href="#" onclick="removeImg({{ image.id }})"><i class="trash icon"></i></a>
 						</div>
 						<div class="ui left corner label">
