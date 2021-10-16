@@ -9,7 +9,7 @@
 			<p>{{ errMsg }}</p>
 		</div>
 	{% endif %}
-	<form action="index.php?modifierGalerie" method="post"
+	<form action="index.php?modifierGalerie&galerieId={{galerie.id}}" method="post"
         enctype="multipart/form-data" class="ui large form">
 
 		{#<div class="field">
@@ -18,7 +18,7 @@
 		</div>#}
 
 		<div class="field">
-			<label for="picture">Nouveau titre de la galerie :</label>
+			<label for="nom">Nouveau titre de la galerie :{{ galerie.id }}</label>
 				<input type="text" name="nom" placeholder="titre">
 		</div>
 
