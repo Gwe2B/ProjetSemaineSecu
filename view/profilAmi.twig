@@ -7,15 +7,14 @@
            <div class="content">
                <img class="right floated mini ui image" src="dist/images/user_icon.png">
                <div class="header">
-               Elliot Fu
+               {{friend.prenom}} {{friend.nom}}
                </div>
                <div class="meta">
-               email de l'ami
+               {{friend.mail}}
                </div>
            </div>
        </div>
     </div>
-	
 	
 	<div class="ui rounded images" id="display">
 	
@@ -32,6 +31,12 @@
 				</a>
 			</div>
 
+                 <div class="ui large breadcrumb hide crumb{{galerie.id}}">
+                     <a class="section" href="index.php?profilAmi&friendId={{ friend.id }}">Galeries de {{friend.prenom}}</a>
+                     <i class="right chevron icon divider"></i>
+                     <div class="active section">{{galerie.name}}</div>
+                 </div>
+   
 			<h1 class="titregal{{galerie.id}} titregal hide no-marginTop">{{galerie.name}}</h1>
 			
 			{% for image in galerie.images %}

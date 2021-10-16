@@ -1,12 +1,18 @@
 <?php
 require_once ROOT."controllers".DS."Galerie.php";
 require_once ROOT."controllers".DS."GalerieManager.php";
+require_once ROOT."controllers".DS."User.php";
+require_once ROOT."controllers".DS."UserManager.php";
 
 $gm = GalerieManager::getInstance($db);
+$um = UserManager::getInstance($db);
 
 $pageContent = array(
-    'galeries'=> $gm->getByFriendId($user->getId()),
+    'galeries'=> $gm->getByFriendId(intval($_GET['friendId'])),
+	'friend'=> $um->getById(intval($_GET['friendId'])),
 );
+
+//var_dump(intval($_GET['friendId']));
 
 //var_dump($gm->getByFriendId($user->getId()));
 

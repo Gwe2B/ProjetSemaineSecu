@@ -17,6 +17,11 @@ function DisplayImages(id) {
 	$('.' + classephoto).removeClass('hide');
 	$('.' + classephoto).addClass('show');
 	
+	if ($('.crumb'+id)) {
+		$('.crumb'+id).removeClass('hide');
+	    $('.crumb'+id).addClass('show');
+	}
+	
 	if ($('.photoPlus')) {
 		$('.photoPlus').removeClass('hide');
 	    $('.photoPlus').addClass('show');
