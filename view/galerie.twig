@@ -15,7 +15,7 @@
 					<div class="ui bottom attached label banniere">{{galerie.name}}</div>
 				</a>
 				<div class="adminPane">
-					<a href="#"><i class="pencil alternate icon"></i></a>
+					<a href="index.php?modifierGalerie&galerieId={{ galerie.id }}" onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )"><i class="pencil alternate icon"></i></a>
 					<a href="#" onclick="removeGal({{ galerie.id }})"><i class="trash icon"></i></a>
 				</div>
 			</div>

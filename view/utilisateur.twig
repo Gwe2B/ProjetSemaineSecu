@@ -1,35 +1,54 @@
 {% extends "templates/connected.twig" %}
 
 {% block mainContent %}
-<div class="twelve wide stretched column">
+    <div class="twelve wide stretched column">
         <div class="ui segment">
-                <div class="ui two column grid container">
-            <div class="column" style="max-width:350px;">
-                <img class="ui avatar image" style="width: 100%; height: auto;" 
-                    src="https://semantic-ui.com/images/wireframe/square-image.png">
-                <h3 class="ui center aligned header">{{ user }}</h3>
-                <div class="ui justified segment">
-                    {% if user.tel is not null %}
-                    Telephone: <a href="tel:{{ user.tel }}">{{ user.tel }}</a><br>
-                    {% endif %}
-                    E-mail: <a href="mailto:{{ user.mail }}">{{ user.mail }}</a><br>
-                    {% if user.adresse is not null %}
-                    Adresse: <address>{{ user.adresse }}</address>
-                    {% endif %}
-                    {% if user.description is not null %}
-                    Telephone: <p>{{ user.description }}</p>
-                    {% endif %}
-                    <a href="index.php?userUpdate" class="ui button primary" style="width: 100%"
-                        onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )">Modifier</a>
-                    <a href="index.php?changeMdp" class="ui button primary" style="width: 100%; margin-top: 1em;"
-                        onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )">Changer le mot de passe</a>
+            <div class="ui two column grid container">
+                <div class="column" style="max-width:350px;">
+                     <img class="ui avatar image" style="width: 150px; height: auto;" src="dist/images/user_icon.png">
+                     <h3 class="ui center aligned header">{{ user }}</h3>
+                     <div class="ui justified segment">
+                         {% if user.tel is not null %}
+                         Telephone: <a href="tel:{{ user.tel }}">{{ user.tel }}</a><br>
+                         {% endif %}
+                         E-mail: <a href="mailto:{{ user.mail }}">{{ user.mail }}</a><br>
+                         {% if user.adresse is not null %}
+                         Adresse: <address>{{ user.adresse }}</address>
+                        {% endif %}
+                        {% if user.description is not null %}
+                        Telephone: <p>{{ user.description }}</p>
+                        {% endif %}
+                         <a href="index.php?userUpdate" class="ui button primary" style="width: 100%"
+                            onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )">Modifier</a>
+                         <a href="index.php?changeMdp" class="ui button primary" style="width: 100%; margin-top: 1em;"
+                            onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )">Changer le mot de passe</a>
+                    </div>
+                </div>
+                <div class="right floated column" style="right: 10px; width: 300px; padding: 10px;">
+                    <div class="ui card" style="width: 300px; padding: 10px;">
+                         <h1 style="  text-align: center; font-size: 40px"><i class="users icon"></i></h1>
+                         <div class="content">
+                            <div class="meta">
+                                <div role="list" class="ui divided relaxed list">
+                                     {% for friend in friends %}
+                                        <div role="listitem" class="item">
+                                            <i aria-hidden="true" class="user large icon middle aligned"></i>
+                                            <div class="content">
+                                                 <a class="header" href="?profilAmi">{{friend.nom}}  {{friend.prenom}}</a>
+                                            </div>
+                                        </div>
+                                     {% endfor %}
+                                </div>
+                                <div class="ui bottom attached button" style="  margin-top: 320px;">
+                                     <i class="add icon"></i>
+                                         Add Friend
+                                </div>
+
+                            </div>
+                        </div> 
+                     </div>
                 </div>
             </div>
-            <div class="column">
-                TODO: Put content here
-            </div>
-        </div>
-        </div>
+        </div>		
     </div>
-    
 {% endblock %}

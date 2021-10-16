@@ -1,0 +1,63 @@
+{% extends "templates/connected.twig" %}
+
+{% block mainContent %}
+
+   <div class="ui cards" style="margin-bottom:20px">
+       <div class="card no-shadow">
+           <div class="content">
+               <img class="right floated mini ui image" src="dist/images/user_icon.png">
+               <div class="header">
+               Elliot Fu
+               </div>
+               <div class="meta">
+               email de l'ami
+               </div>
+           </div>
+       </div>
+    </div>
+	
+	
+	<div class="ui rounded images" id="display">
+	
+	<!-- Ensemble des galeries et leurs photos -->
+	
+        {% if galeries is not null  %}	
+		{% for galerie in galeries %}
+		   <!-- {% if (galerie.images|length==1 and galerie.images[0].visibility==-1)==false %} -->
+
+			<div class="galerie conteneur_img ui image large rounded">
+				<a href="#" onclick="DisplayImages({{galerie.id}});return false" class="lien">
+					<img class="" src="uploads/{{galerie.images[0].path}}">
+					<div class="ui bottom attached label banniere">{{galerie.name}}</div>
+				</a>
+			</div>
+
+			<h1 class="titregal{{galerie.id}} titregal hide no-marginTop">{{galerie.name}}</h1>
+			
+			{% for image in galerie.images %}
+			    {% if image.visibility !=-1 %}	
+				<div class="photo{{galerie.id}} photos conteneur_img ui image medium rounded hide" style="padding:auto;" id="{{image.id}}">
+					<div class="ui left corner labeled">
+						<a href="uploads/{{image.path}}" data-lightbox="mygallery" data-title="{{galerie.name}}"
+						class="ui right corner labeled">
+							<img src="uploads/{{image.path}}">
+						</a>
+					</div>
+				</div>
+				{% endif %}
+			{% endfor %}
+		    <!-- {% endif %} -->
+		{% endfor %}
+		{% endif %}
+		
+	</div>
+
+
+
+	<link rel="stylesheet" href="./dist/galerie/galerie.css">
+	<script src="./dist/galerie/galerie.js"></script>
+
+	<link rel="stylesheet" href="./dist/lightbox/lightbox.min.css">
+	<script src="./dist/lightbox/lightbox-plus-jquery.min.js"></script>
+
+{% endblock %}
