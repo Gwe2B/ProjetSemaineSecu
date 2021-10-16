@@ -122,32 +122,24 @@ class GalerieManager {
 			
 			/*récupérer les images de la galerie*/
 			
-			$query1 = $this->db->prepare("SELECT * FROM Image i where i.gallerie_id=?");
+	        $images = null;
 			
 			foreach($datas as $row) {
 				
 				$gal = new Galerie($row);
 				$gal->call_setUser_Id($UserId);
-						
-                $query1->execute(array($gal->getId()));
-                $datas1 = $query1->fetchAll();                
 				
-				if($datas1 != null) {
-			
-			       $images = array();
-			
-			       foreach($datas1 as $row1) {
-				   array_push($images, new Image($row1));  
-			       }
-                }
+				$images = $this->getImagesByGalerieId($gal->getId());
 				
-				$gal->setImages($images);
+				if ($images !=null) {
+					
+					$gal->setImages($images);
+				}
 				
 				array_push($galeries, $gal);
            
 			}
-			
-			$query1->closeCursor();
+
         }
 
         return $galeries;

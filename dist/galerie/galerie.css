@@ -107,7 +107,11 @@
 		}
 		
 		i.icon {
-			color: grey;
+			color: #bbb;
+		}
+		
+		i.icon:hover {
+			color:#eee;
 		}
 	  
 	  
