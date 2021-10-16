@@ -32,7 +32,7 @@ abstract class ImageUploader {
         $result = null;
 
         if(!(file_exists($destFolder) && is_dir($destFolder))) {
-            mkdir($destFolder);
+            mkdir("uploads".DS.$destFolder);
         }
 
         if($file['error'] == 0 && $file['size'] <= self::MAX_SIZE) {
