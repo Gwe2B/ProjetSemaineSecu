@@ -108,11 +108,11 @@
 		}
 		
 		i.icon {
-			color: #bbb;
+			color: grey;
 		}
 		
 		i.icon:hover {
-			color:#eee;
+			color:#aaa;
 		}
 		
 		.no-shadow {

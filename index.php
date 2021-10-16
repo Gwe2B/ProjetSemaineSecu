@@ -95,7 +95,11 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
         require_once ROOT."model".DS."modifierGalerie.php";
         $template = $twig->load("modifierGalerie.twig");
         
-    } else if(isset($_GET["profilAmi"])) { 
+    } else if(isset($_GET["amis"])) { 
+        require_once ROOT."model".DS."amis.php";
+        $template = $twig->load("amis.twig");
+		
+	} else if(isset($_GET["profilAmi"])) { 
         require_once ROOT."model".DS."profilAmi.php";
         $template = $twig->load("profilAmi.twig");
 		

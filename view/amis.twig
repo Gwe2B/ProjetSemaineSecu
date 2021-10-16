@@ -1,0 +1,34 @@
+{% extends "templates/connected.twig" %}
+
+{% block mainContent %}
+    <div class="twelve wide stretched column">
+        <div class="ui segment">
+            <div class="ui two column grid container">
+                <div class="column" style="right: 10px; width: 300px; padding: 10px;">
+                    <div class="ui card" style="width: 300px; padding: 10px;">
+                         <h1 style="  text-align: center; font-size: 40px"><i class="users icon"></i></h1>
+                         <div class="content">
+                            <div class="meta">
+                                <div role="list" class="ui divided relaxed list">
+                                     {% for friend in friends %}
+                                        <div role="listitem" class="item">
+                                            <i aria-hidden="true" class="user large icon middle aligned"></i>
+                                            <div class="content">
+                                                 <a class="header" href="?profilAmi&friendId={{friend.id}}">{{friend.prenom}}   {{friend.nom}}</a>
+                                            </div>
+                                        </div>
+                                     {% endfor %}
+                                </div>
+                                <div class="ui bottom attached button" style="  margin-top: 320px;">
+                                     <i class="add icon"></i>
+                                         Add Friend
+                                </div>
+
+                            </div>
+                        </div> 
+                     </div>
+                </div>
+            </div>
+        </div>		
+    </div>
+{% endblock %}
