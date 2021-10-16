@@ -53,6 +53,7 @@
 	  text-align: center;
 	  text-transform: uppercase;
 	  text-shadow: 3px 1px #bbb;
+	  margin-bottom: 40px;
 	  }
 	  
 	  .photos img, .div_photo {
@@ -112,6 +113,14 @@
 		
 		i.icon:hover {
 			color:#eee;
+		}
+		
+		.no-shadow {
+			box-shadow: none !important;
+		}
+		
+		.no-marginTop {
+			margin-top: 0 !important;
 		}
 	  
 	  

@@ -95,7 +95,11 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
         require_once ROOT."model".DS."modifierGalerie.php";
         $template = $twig->load("modifierGalerie.twig");
         
-    } else if(isset($_GET["formulaire"])) { 
+    } else if(isset($_GET["profilAmi"])) { 
+        require_once ROOT."model".DS."profilAmi.php";
+        $template = $twig->load("profilAmi.twig");
+		
+	} else if(isset($_GET["formulaire"])) { 
         require_once ROOT."model".DS."formulaire.php";
         $template = $twig->load("formulaire.twig");
         
@@ -108,7 +112,8 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
     } else {
         require_once ROOT."model".DS."acceuil.php";
         $template = $twig->load('acceuil.twig');
-    }
+		
+    } 
 
     $pageContent['page'] = (!empty($_GET)) ? array_keys($_GET)[0] : "acceuil";
 } else {

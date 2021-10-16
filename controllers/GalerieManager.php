@@ -219,6 +219,69 @@ class GalerieManager {
 		
     }
 	
+	public function getByFriendId(int $friendId) : ?array {
+        
+		$galeries = null;
+
+        $query = $this->db->prepare("SELECT g.id, g.name FROM gallerie g INNER JOIN image i ON g.id = i.gallerie_id where i.user_id=? group by g.id");
+        $query->execute(array($friendId));
+        $datas = $query->fetchAll();
+        $query->closeCursor();
+	 
+	 
+        if($datas != null) {
+			
+			$galeries = array();
+			$gal = null;
+			
+			/*récupérer les images de la galerie*/
+			
+	        $images = null;
+			
+			foreach($datas as $row) {
+				
+				$gal = new Galerie($row);
+				$gal->call_setUser_Id($friendId);
+				
+				$images = $this->getFriendImagesByGalerieId($gal->getId());
+				
+				if ($images !=null) {
+					
+					$gal->setImages($images);
+					array_push($galeries, $gal);
+				}
+			}
+
+        }
+
+        return $galeries;
+    }
+	
+	public function getFriendImagesByGalerieId(int $galId) : ?array {
+        
+		$images = null;
+
+        $query = $this->db->prepare("SELECT * FROM image WHERE gallerie_id=? and visibility!=-1");
+        $query->execute(array($galId));
+        $datas = $query->fetchAll();
+        $query->closeCursor();
+
+        if($datas != null) {
+			
+			$images = array();
+			
+			foreach($datas as $row) {
+				$img= new Image($row);
+				array_push($images, $img);
+			}
+        }
+
+        return $images;
+    }
+	
+	
+	
+	
 	/**
      * Get an image by its galerie id.
      * @param int $GalerieId The Image galerie_id to retrieve
