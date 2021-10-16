@@ -1,30 +1,41 @@
 {% extends "templates/connected.twig" %}
 
 {% block mainContent %}
+
 	<div class="ui rounded images" id="display">
 	
 	<!-- Ensemble des galeries et leurs photos -->
 	
         {% if galeries is not null %}	
 		{% for galerie in galeries %}
+
 			<div class="galerie conteneur_img ui image large rounded">
 				<a href="#" onclick="DisplayImages({{galerie.id}});return false" class="lien">
 					<img class="" src="uploads/{{galerie.images[0].path}}">
 					<div class="ui bottom attached label banniere">{{galerie.name}}</div>
 				</a>
+				<div class="adminPane">
+					<a href="#"><i class="pencil alternate icon"></i></a>
+					<a href="#" onclick="removeGal({{ galerie.id }})"><i class="trash icon"></i></a>
+				</div>
 			</div>
 
 			<h1 class="titregal{{galerie.id}} titregal hide">{{galerie.name}}</h1>
 			
 			{% for image in galerie.images %}
-				<div class="photo{{galerie.id}} photos conteneur_img ui image medium rounded hide" style="padding:auto;">
-				<div class="ui left corner labeled">
-					<a href="uploads/{{image.path}}" data-lightbox="mygallery" data-title="{{galerie.name}}">
-						<img src="uploads/{{image.path}}">
-					</a>
-					<div class="ui left corner label">
-						<i class="{{ image.getIconVisibility }} icon"></i>
-					</div>
+				<div class="photo{{galerie.id}} photos conteneur_img ui image medium rounded hide" style="padding:auto;" id="{{image.id}}">
+					<div class="ui left corner labeled">
+						<a href="uploads/{{image.path}}" data-lightbox="mygallery" data-title="{{galerie.name}}"
+						class="ui right corner labeled">
+							<img src="uploads/{{image.path}}">
+						</a>
+						<div class="adminPane">
+							<a href="index.php?editImg&imageId={{ image.id }}" onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )"><i class="pencil alternate icon"></i></a>
+							<a href="#" onclick="removeImg({{ image.id }})"><i class="trash icon"></i></a>
+						</div>
+						<div class="ui left corner label">
+							<i class="{{ image.getIconVisibility }} icon"></i>
+						</div>
 					</div>
 				</div>
 			{% endfor %}
@@ -48,6 +59,10 @@
 					<img id="imgcamera" src="dist/images/camera.png">
 					<div class="ui bottom attached label banniere">{{galerieVide.name}}</div>
 				</a>
+				<div class="adminPane">
+					<a href="#"><i class="pencil alternate icon"></i></a>
+					<a href="#" onclick="removeGal({{ galerieVide.id }})"><i class="trash icon"></i></a>
+				</div>
 			</div>
 		{% endfor %}
 		{% endif %}

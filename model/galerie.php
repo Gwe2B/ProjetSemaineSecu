@@ -9,4 +9,18 @@ $pageContent = array(
 	'galeriesVides'=> $gm->getEmptyGaleriesByUserId($user->getId()),
 );
 
-//var_dump($gm->getEmptyGaleriesByUserId($user->getId()));
+//var_dump($gm->getByUserId($user->getId()));
+
+// $galeries = $gm->getByUserId($user->getId());
+// foreach($galeries as $gal) {
+	// var_dump($gal->getImages());
+	// echo("*************");
+// }
+
+//$images = $gm->getImagesByGalerieId(13);
+
+//$gal = $gm->getById(13);
+//$gm->removeGalerie($gal);
+
+
+

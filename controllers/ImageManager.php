@@ -34,6 +34,21 @@ class ImageManager {
     }
 
 /* ------------------------------ Class methods ----------------------------- */
+    public function getById(int $id) : ?Image {
+        $result = null;
+
+        $query = $this->db->prepare("SELECT * FROM image WHERE id=?");
+        $query->execute(array($id));
+        $datas = $query->fetch();
+        $query->closeCursor();
+
+        if($datas != null) {
+            $result = new Image($datas);
+        }
+
+        return $result;
+    }
+
     /**
      * Add an image to the database
      * @param Image $img The image to insert into the database
@@ -52,5 +67,23 @@ class ImageManager {
         ));
 
         $query->closeCursor();
+    }
+
+    public function updateImage(Image $img) : void {
+        $query = $this->db->prepare("UPDATE image SET visibility=? WHERE id=?");
+        $query->execute(array($img->getVisibility(), $img->getId()));
+        $query->closeCursor();
+    }
+
+    /**
+     * Remove an image to the database
+     * @param int $data The image id to remove from the database
+     */
+    public function removeImage(Image $img) : void {
+        $query = $this->db->prepare("DELETE FROM image WHERE id=?");
+        $query->execute(array($img->getId()));
+        $query->closeCursor();
+
+        unlink(ROOT."uploads".DS.$img->getPath());
     }
 }

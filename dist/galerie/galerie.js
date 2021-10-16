@@ -29,4 +29,53 @@ function DisplayImages(id) {
 	});
 }
 
+function removeImg(id) {
+	let continuer = confirm("Etes-vous sure de vouloir la supprimer ?");
 
+	if(continuer) {
+		$.ajax({
+			'url':'index.php?ajax=removeImg',
+			'dataType':'json',
+			'type':'GET',
+			'data':{
+				'imgId': id
+			},
+			'success':function(data) {
+				if(data.result) {
+					document.getElementById(id).remove();
+				} else {
+					alert("Impossible de supprimer l'image.");
+				}
+			},
+			'error':function(request, error) {
+				alert(error);
+			}
+		});
+	}
+}
+
+function removeGal(id) {
+	let continuer = confirm("Etes-vous sûr de vouloir supprimer la galerie et toutes ses photos ?");
+
+	if(continuer) {
+		$.ajax({
+			'url':'index.php?ajax=removeGal',
+			'dataType':'json',
+			'type':'GET',
+			'data':{
+				'galId': id
+			},
+			'success':function(data) {
+				if(data.result) {
+					document.getElementById(id).remove();
+				} else {
+					alert("Impossible de supprimer la galerie.");
+				}
+			},
+			'error':function(request, error) {
+				alert(error);
+			}
+		});
+	}
+	location.reload();
+}

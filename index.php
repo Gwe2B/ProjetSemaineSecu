@@ -62,7 +62,15 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
     if(isset($_GET["disconnect"])) {
         session_destroy();
         header("Location: index.php");
-
+    } else if(isset($_GET["ajax"])) {
+        $requete = htmlspecialchars($_GET["ajax"]);
+        if($requete === "removeImg") {
+            require_once ROOT."ajax".DS."removeImg.php";
+        } else if($requete === "removeGal") {
+            require_once ROOT."ajax".DS."removeGal.php";
+        } else {
+            //todo find a way to send 404 error
+        }
     } else if(isset($_GET["utilisateur"])) { 
         require_once ROOT."model".DS."utilisateur.php";
         $template = $twig->load("utilisateur.twig");
@@ -75,6 +83,9 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
         require_once ROOT."model".DS."ajoutImage.php";
         $template = $twig->load("ajoutImage.twig");
         
+    } else if(isset($_GET['editImg'])) {
+        require_once ROOT."model".DS."editImg.php";
+        $template = $twig->load("editImg.twig");
     } else if(isset($_GET["ajoutGalerie"])) { 
         require_once ROOT."model".DS."ajoutGalerie.php";
         $template = $twig->load("ajoutGalerie.twig");

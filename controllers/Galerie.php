@@ -53,7 +53,7 @@ class Galerie {
         }
     }
 	
-	public function setImages(array $val) {
+	public function setImages(?array $val) {
         if(!empty($val)) {
             $this->images = $val;
         }
