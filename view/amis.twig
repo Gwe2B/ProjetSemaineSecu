@@ -24,18 +24,36 @@
                  <div class="ten wide column">
                      <div class="ui segment" style="height:100%">				  
 	 	
-                 		<h1 style="  text-align: center; font-size: 30px">Chercher un profil <i class="user icon"></i></h1><br/>
+                 		<h1 style="text-align: center; font-size: 30px">Chercher un profil <i class="user icon"></i></h1><br/>
        
+	                     <form action="index.php?amis" method="post">
 					     <div class="ui search" style="text-align:center">
                              <div class="ui icon input" style="width:80%">
-                                 <input class="prompt" type="text" placeholder="Saisir l'email...">
+                                 <input id="recherche" name="mail" class="prompt" type="text" placeholder="Saisir l'email...">
                                  <i class="search icon"></i>
                              </div>
-                             <div class="results"></div>
+                             <div id="users" class="ui list" style="text-align:justify">
+							 {% for utilisateur in utilisateurs %}
+							      <div role="listitem" class="item utilisateur" style="display: inline-block; padding: 0;padding-right: 5px;">
+                                        <i aria-hidden="true" class="user large icon middle aligned"></i>
+                                     <div class="content">
+                                         <a class="header" href="#">{{utilisateur.prenom}}   {{utilisateur.nom}}</a>
+										 <div class="description">{{utilisateur.mail}} </div>
+                                     </div>
+                                  </div>
+						     {% endfor %}
+							 </div>
+							 
+							 </div>
                         </div>
+						</form>
 
                     </div>
                 </div>
             </div>
+			
+			<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+			<script type="text/javascript" src="./js/amis.js"></script>
+			
 
 {% endblock %}

@@ -229,6 +229,50 @@ class UserManager {
 
         return $friends;
     }
+	
+	
+	public function areFriends(int $usr1Id, int $usr2Id) : bool {
+        
+		$areFriends = false;
 
+        $query = $this->db->prepare("SELECT * FROM friends where (user_id=? and friend_id=?) or (user_id=? and friend_id=?)");
+        $query->execute(array($usr1Id,$usr2Id,$usr2Id,$usr1Id));
+        $data = $query->fetch();
+        $query->closeCursor();
+
+        if($data != null) {
+			$areFriends=true;
+          }
+
+        return $areFriends;
+    }
+	
+	public function getNoneFriendsUsers(int $usrId) : ?array {
+        
+		$users = null;
+
+        $query = $this->db->prepare("SELECT * FROM user where id!=?");
+        $query->execute(array($usrId));
+        $data = $query->fetchAll();
+        $query->closeCursor();
+
+        if($data != null) {
+			
+			$users= array();
+			
+			foreach ($data as $row) {
+
+              $newUser = new User($row);
+			  $areFriends = $this->areFriends($usrId, $newUser->getId());
+              
+			  if($areFriends==false) {
+				  array_push($users, $newUser);
+			  }
+    
+            }
+        }
+
+        return $users;
+    }	
 
 }
