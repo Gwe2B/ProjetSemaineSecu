@@ -1,5 +1,8 @@
 <?php
 
+require_once ROOT."controllers".DS."User.php";
+require_once ROOT."controllers".DS."UserManager.php";
+
 /**
  * User manager class. It permit to authentified an user, to update it, add a
  * new one and more.
@@ -219,12 +222,14 @@ class GalerieManager {
 		
     }
 	
-	public function getByFriendId(int $friendId) : ?array {
+	/************************** PARTIE PROFIL AMI ou USER ******************************/
+	
+	public function getByOtherUserId(int $otherId, int $usrId) : ?array {
         
 		$galeries = null;
 
         $query = $this->db->prepare("SELECT g.id, g.name FROM gallerie g INNER JOIN image i ON g.id = i.gallerie_id where i.user_id=? group by g.id");
-        $query->execute(array($friendId));
+        $query->execute(array($otherId));
         $datas = $query->fetchAll();
         $query->closeCursor();
 	 
@@ -241,9 +246,9 @@ class GalerieManager {
 			foreach($datas as $row) {
 				
 				$gal = new Galerie($row);
-				$gal->call_setUser_Id($friendId);
+				$gal->call_setUser_Id($otherId);
 				
-				$images = $this->getFriendImagesByGalerieId($gal->getId());
+				$images = $this->getOtherUserImagesByGalerieId($gal->getId(),$otherId,$usrId);
 				
 				if ($images !=null) {
 					
@@ -257,11 +262,18 @@ class GalerieManager {
         return $galeries;
     }
 	
-	public function getFriendImagesByGalerieId(int $galId) : ?array {
+	public function getOtherUserImagesByGalerieId(int $galId, int $otherId, int $usrId) : ?array {
         
 		$images = null;
+		$um = UserManager::getInstance($this->db);
+		$areFriends = $um->areFriends($usrId, $otherId);
 
-        $query = $this->db->prepare("SELECT * FROM image WHERE gallerie_id=? and visibility!=-1");
+        $query = null;
+        if($areFriends==true) {
+			$query = $this->db->prepare("SELECT * FROM image WHERE gallerie_id=? and visibility!=-1");
+		} else {
+			$query = $this->db->prepare("SELECT * FROM image WHERE gallerie_id=? and visibility=1");
+		}        
         $query->execute(array($galId));
         $datas = $query->fetchAll();
         $query->closeCursor();
@@ -278,8 +290,6 @@ class GalerieManager {
 
         return $images;
     }
-	
-	
 	
 	
 	/**

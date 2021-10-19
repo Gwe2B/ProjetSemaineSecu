@@ -8,13 +8,13 @@ $gm = GalerieManager::getInstance($db);
 $um = UserManager::getInstance($db);
 
 $pageContent = array(
-    'galeries'=> $gm->getByFriendId(intval($_GET['friendId'])),
+    'galeries'=> $gm->getByOtherUserId(intval($_GET['friendId']),$user->getId()),
 	'friend'=> $um->getById(intval($_GET['friendId'])),
 );
 
 //var_dump(intval($_GET['friendId']));
 
-//var_dump($gm->getByFriendId($user->getId()));
+//var_dump($gm->getByOtherUserId($user->getId()));
 
 // $galeries = $gm->getByUserId($user->getId());
 // foreach($galeries as $gal) {

@@ -1,0 +1,37 @@
+.hide {
+	display:none !important;
+	} 
+
+.show{
+	display: inline-block !important;
+	}
+	
+	.fullHeight {
+		height:100%;
+	}
+	
+	.titre {
+		text-align: center;
+		font-size: 30px
+	}
+	
+	.iconeAmis {
+		margin-left:10px !important;
+	}
+	
+	.divRecherche {
+		text-align:center;
+	}
+	
+	.divRecherche .input {
+		width:80%;
+	}
+	
+	#users {
+		text-align:justify;
+	}
+	
+	.utilisateur {
+		padding: 0;
+		padding-right: 5px;
+	}

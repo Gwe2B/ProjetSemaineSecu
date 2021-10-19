@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 	
-	$('.utilisateur').hide();
+//	$('.utilisateur').hide();
 
      });
 
@@ -20,12 +20,17 @@ $('#recherche').keyup(function () {
 		//	alert(htxt1);
 
             if (htxt.indexOf(recherche) > -1 || htxt1.indexOf(recherche) > -1) {
-                $(this).show();
+                $(this).removeClass('hide');
+				$(this).addClass('show');
             } else {
-                $(this).hide();
+                $(this).removeClass('show');
+				$(this).addClass('hide');
             }
 			
-			if(recherche==="") 	$(this).hide();
+			if(recherche==="") {
+		        $(this).removeClass('show');
+				$(this).addClass('hide');			
+			}
         });		
 	
 });

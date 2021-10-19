@@ -2,11 +2,10 @@
 
 {% block mainContent %}
         	
-			<div class="column stackable ui grid" style="height:100%">
+			<div class="column stackable ui grid fullHeight">
                  <div class="six wide column">
-                       <div class="ui segment" style="height:100%">
-					   
-					       <h1 style="  text-align: center; font-size: 40px"><i class="users icon"></i></h1>
+                       <div class="ui segment fullHeight">   
+					       <h1 class="titre">Amis<i class="users icon iconeAmis"></i></h1>
                            <div role="list" class="ui divided relaxed list">
                                      {% for friend in friends %}
                                         <div role="listitem" class="item">
@@ -17,43 +16,37 @@
                                         </div>
                                      {% endfor %}
                             </div>
-                  
 					   </div>
                  </div>
 				 
                  <div class="ten wide column">
-                     <div class="ui segment" style="height:100%">				  
-	 	
-                 		<h1 style="text-align: center; font-size: 30px">Chercher un profil <i class="user icon"></i></h1><br/>
-       
-	                     <form action="index.php?amis" method="post">
-					     <div class="ui search" style="text-align:center">
-                             <div class="ui icon input" style="width:80%">
+                     <div class="ui segment fullHeight">				  
+                 		<h1 class="titre">Chercher un profil <i class="user icon"></i></h1><br/>
+					     <div class="ui search divRecherche">
+                             <div class="ui icon input">
                                  <input id="recherche" name="mail" class="prompt" type="text" placeholder="Saisir l'email...">
                                  <i class="search icon"></i>
                              </div>
-                             <div id="users" class="ui list" style="text-align:justify">
+                             <div id="users" class="ui list">
 							 {% for utilisateur in utilisateurs %}
-							      <div role="listitem" class="item utilisateur" style="display: inline-block; padding: 0;padding-right: 5px;">
+							      <div role="listitem" class="item utilisateur hide">
                                         <i aria-hidden="true" class="user large icon middle aligned"></i>
                                      <div class="content">
-                                         <a class="header" href="#">{{utilisateur.prenom}}   {{utilisateur.nom}}</a>
+                                         <a class="header" href="index.php?profilAmi&friendId={{ utilisateur.id }}">{{utilisateur.prenom}}   {{utilisateur.nom}}</a>
 										 <div class="description">{{utilisateur.mail}} </div>
                                      </div>
                                   </div>
 						     {% endfor %}
-							 </div>
-							 
+							 </div>						 
 							 </div>
                         </div>
-						</form>
-
                     </div>
                 </div>
             </div>
 			
-			<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
-			<script type="text/javascript" src="./js/amis.js"></script>
+			<link rel="stylesheet" href="./dist/amis/amis.css">
+			<script type="text/javascript" src="./dist/jquery/jquery-3.5.1.min.js"></script>
+			<script type="text/javascript" src="./dist/amis/amis.js"></script>
 			
 
 {% endblock %}
