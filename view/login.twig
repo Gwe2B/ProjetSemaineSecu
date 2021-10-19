@@ -16,7 +16,7 @@
             <p>{{ sessionMsg }}</p>
         </div>
         {% endif %}
-        <form action="index.php?login" method="post" class="ui large form">
+        <form action="index.php?login" method="post" class="ui large form" onsubmit="submitForm()">
             <div class="field">
                 <div class="ui left icon input">
                     <i class="user icon"></i>
@@ -26,7 +26,7 @@
             <div class="field">
                 <div class="ui left icon input">
                     <i class="lock icon"></i>
-                    <input type="password" name="pwd" placeholder="Mot de passe">
+                    <input type="password" name="pwd" id="pwd" placeholder="Mot de passe">
                 </div>
             </div>
             <button class="ui fluid large teal submit button" type="submit">Connection</button>
@@ -35,6 +35,13 @@
                 <a href="index.php?askRecup">J'ai oublié mon mot de passe.</a>
             </p>
         </form>
+        {#<script src="./dist/md5.js"></script>
+        <script>
+        function submitForm() {
+            pwdInput = document.getElementById('pwd');
+            pwdInput.value = calcMD5(pwdInput.value);
+        }
+        </script>#}
     </div>
 </div>
 {% endblock %}
