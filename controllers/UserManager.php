@@ -273,6 +273,23 @@ class UserManager {
         }
 
         return $users;
+    }
+
+    public function addFriendship(int $usr1Id, int $usr2Id) : void {
+		
+		if($usr1Id != null and $usr2Id != null) {
+			
+			$areFriends = $this->areFriends($usr1Id, $usr2Id);
+			
+			if($areFriends==false) {
+				
+				 $query = $this->db->prepare("INSERT INTO friends VALUES (?,?)");
+                 $query->execute(array($usr1Id,$usr2Id)); 
+				  
+			  }
+			
+		}
+
     }	
 
 }

@@ -10,7 +10,11 @@ $um = UserManager::getInstance($db);
 $pageContent = array(
     'galeries'=> $gm->getByOtherUserId(intval($_GET['friendId']),$user->getId()),
 	'friend'=> $um->getById(intval($_GET['friendId'])),
+	'areFriends'=> $um->areFriends($user->getId(),intval($_GET['friendId'])),
+	'user'=>$user,
 );
+
+//$um->addFriendship(1,4);
 
 //var_dump(intval($_GET['friendId']));
 

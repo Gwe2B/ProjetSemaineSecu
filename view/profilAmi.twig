@@ -14,6 +14,11 @@
                </div>
            </div>
        </div>
+       {% if areFriends == false  %}
+            <button class="ui button" style="height:40px; margin-top:25px; margin-left:20px;" onclick="addFriendship({{user.id}},{{friend.id}})">Ajouter</button>
+	   {% else %} 
+			<button class="ui button" style="height:40px; margin-top:25px; margin-left:20px;" onclick="removeFriendship({{user.id}},{{friend.id}})">Retirer de la liste d'amis</button>		
+       {% endif %} 				  
     </div>
 	
 	<div class="ui rounded images" id="display">
@@ -61,8 +66,10 @@
 
 	<link rel="stylesheet" href="./dist/galerie/galerie.css">
 	<script src="./dist/galerie/galerie.js"></script>
+	<script src="./js/profilAmi.js"></script>
 
 	<link rel="stylesheet" href="./dist/lightbox/lightbox.min.css">
 	<script src="./dist/lightbox/lightbox-plus-jquery.min.js"></script>
+	<script type="text/javascript" src="./dist/jquery/jquery-3.5.1.min.js"></script>
 
 {% endblock %}
