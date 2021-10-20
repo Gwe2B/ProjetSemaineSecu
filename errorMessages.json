@@ -7,5 +7,6 @@
     "PASSWORD_CHANGED": "Mot de passe changer avec succés.",
     "DIFFERENT_PASSWORD": "Les mots de passe sont différents!",
     "UNABLE_UPLOAD": "Impossible d'upload une ou plusieurs image(s).\nVeillez à vérifier son poids (< 10Mo) et son extension.",
-    "USER_CREATED": "Utilisateur créer!"
+    "USER_CREATED": "Utilisateur créer!",
+    "INVALID_CAPTCHA" : "Le captcha est erronée!"
 }

@@ -14,9 +14,12 @@
                 <label for="email">Adresse E-mail du compte:</label>
                 <input type="email" name="email" id="email" placeholder="Adresse E-mail">
             </div>
+            <div class="g-recaptcha" data-sitekey="{{ googlePublicKey }}"></div>
             <button class="ui fluid large teal submit button" type="submit">Envoyer</button>
-        </form>        <a href="index.php"><i class="left arrow icon"></i> Retour</a>
-
+        </form>
+        <a href="index.php"><i class="left arrow icon"></i> Retour</a>
     </div>
 </div>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}
