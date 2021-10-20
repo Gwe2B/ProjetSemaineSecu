@@ -35,6 +35,10 @@ function validateForm() {
         confirmIn.parentElement.classList.add('error');
     } else {
         result = true;
+
+        newMdpIn.value = calcMD5(newMdpIn.value);
+        confirmIn.value = calcMD5(confirmIn.value);
+        document.getElementById('oldMdp').value = calcMD5(document.getElementById('oldMdp').value);
     }
 
     return result;

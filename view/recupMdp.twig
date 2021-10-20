@@ -24,7 +24,7 @@
                 </ul>
             </p>
         </div>
-        <form action="index.php?recupMdp={{token}}" method="post" class="ui large form" id="form">
+        <form action="index.php?recupMdp={{token}}" method="post" class="ui large form" onsubmit="submitForm()">
             <div class="field">
                 <label for="mdp">Nouveau mot de passe:</label>
                 <input type="password" name="mdp" id="mdp"
@@ -39,26 +39,16 @@
             </div>
             <button class="ui fluid large teal submit button" type="submit">Enregistrer</button>
         </form>
+        <script src="./dist/md5.js"></script>
+        <script>
+            function submitForm() {
+                let pwdIn = document.getElementById('mdp'),
+                    cpwdIn = document.getElementById('confirmMdp');
+
+                pwdIn.value = calcMD5(pwdIn.value);
+                cpwdIn.value = calcMD5(cpwdIn.value);
+            }
+        </script>
     </div>
 </div>
-
-<!--<script>
-let mdp = document.getElementById('mdp'),
-    confirm = document.getElementById('confirmMdp'),
-    regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$/;
-
-document.getElementById('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    if(mdp.value === confirmMdp.value) {
-        if(regex.test(mdp.value)) {
-            this.submit();
-        } else {
-            alert("Le mot de passe ne correspond pas au pattern demandée!");
-        }
-    } else {
-        alert("Les deux mots de passes ne correspondent pas!");
-    }
-}, false);
-</script>-->
 {% endblock %}
