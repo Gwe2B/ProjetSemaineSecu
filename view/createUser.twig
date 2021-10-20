@@ -12,7 +12,7 @@
             <p>{{ errMsg }}</p>
         </div>
         {% endif %}
-        <form action="index.php?createUser" method="post" class="ui large form">
+        <form action="index.php?createUser" method="post" class="ui large form" onsubmit="submitForm()">
             {# User creation #}
             <div class="field">
                 <input type="email" name="email" placeholder="Votre adresse E-mail" required>
@@ -31,8 +31,23 @@
             <div class="field">
                 <input type="password" name="confirmMdp" placeholder="Confirmer le mot de passe" required>
             </div>
+
+            <div class="g-recaptcha" data-sitekey="{{ googlePublicKey }}"></div>
             <button class="ui fluid large teal submit button" type="submit">Créer le compte</button>
         </form>
+        <script src="./dist/md5.js"></script>
+        <script>
+            function submitForm() {
+                let pwdIn = document.getElementById('mdp'),
+                    cpwdIn = document.getElementById('confirmMdp');
+
+                pwdIn.value = calcMD5(pwdIn.value);
+                cpwdIn.value = calcMD5(cpwdIn.value);
+            }
+        </script>
+        <a href="index.php"><i class="left arrow icon"></i> Retour</a>
     </div>
 </div>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}

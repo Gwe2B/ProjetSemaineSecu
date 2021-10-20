@@ -7,7 +7,7 @@
  * @version 3
  */
 class UserManager {
-    const REGEX_PASSWORD = "#^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$#";
+    //const REGEX_PASSWORD = "#^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$#";
 
     private static $instance = null;
     private $db;
@@ -160,7 +160,7 @@ class UserManager {
     public function changePassword(User $usr, string $newPassword) : bool {
         $result = false;
 
-        if(preg_match(UserManager::REGEX_PASSWORD, $newPassword)) {
+        if(!empty($newPassword)) {
             $result = true;
             $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
