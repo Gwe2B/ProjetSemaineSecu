@@ -70,6 +70,8 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
             require_once ROOT."ajax".DS."removeGal.php";
         } else if($requete === "addFriendship") {
             require_once ROOT."ajax".DS."addFriendship.php";
+        } else if($requete === "removeFriendship") {
+            require_once ROOT."ajax".DS."removeFriendship.php";
         } else {
             //todo find a way to send 404 error
         }

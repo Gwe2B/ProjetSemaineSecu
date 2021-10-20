@@ -285,6 +285,25 @@ class UserManager {
 				
 				 $query = $this->db->prepare("INSERT INTO friends VALUES (?,?)");
                  $query->execute(array($usr1Id,$usr2Id)); 
+				 $query->closeCursor();
+				  
+			  }
+			
+		}
+
+    }
+
+    public function removeFriendship(int $usr1Id, int $usr2Id) : void {
+		
+		if($usr1Id != null and $usr2Id != null) {
+			
+			$areFriends = $this->areFriends($usr1Id, $usr2Id);
+			
+			if($areFriends==true) {
+				
+				 $query = $this->db->prepare("DELETE FROM friends where (user_id=? and friend_id=?) or (user_id=? and friend_id=?)");
+                 $query->execute(array($usr1Id,$usr2Id,$usr2Id,$usr1Id));
+                 $query->closeCursor();
 				  
 			  }
 			
