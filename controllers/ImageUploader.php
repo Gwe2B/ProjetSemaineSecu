@@ -31,6 +31,10 @@ abstract class ImageUploader {
     public static function uploadImage(string $destFolder, array $file) : ?string {
         $result = null;
 
+        if(!(file_exists("uploads") && is_dir("uploads"))) {
+            mkdir("uploads");
+        }
+
         if(!(file_exists($destFolder) && is_dir($destFolder))) {
             mkdir("uploads".DS.$destFolder);
         }
