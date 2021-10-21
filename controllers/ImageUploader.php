@@ -35,7 +35,7 @@ abstract class ImageUploader {
             mkdir("uploads");
         }
 
-        if(!(file_exists($destFolder) && is_dir($destFolder))) {
+        if(!(file_exists("uploads".DS.$destFolder) && is_dir("uploads".DS.$destFolder))) {
             mkdir("uploads".DS.$destFolder);
         }
 
