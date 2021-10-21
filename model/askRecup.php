@@ -95,7 +95,7 @@ if(isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
     ".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'].'?recupMdp='.$token;
 
             if(!$mailer->send()) {
-                echo "Mailer Error: ".$mailer->ErrorInfo;
+                //echo "Mailer Error: ".$mailer->ErrorInfo;
             }
         }
 
