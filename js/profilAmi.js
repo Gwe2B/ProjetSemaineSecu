@@ -11,6 +11,7 @@ function addFriendship(id1, id2) {
 			},
 			'success':function(data) {
 				if(data.result) {
+					location.reload();
 				} else {
 				}
 			},
@@ -18,8 +19,7 @@ function addFriendship(id1, id2) {
 				alert(error);
 			}
 		});	
-		
-		location.reload();
+	
 }
 
 
@@ -35,6 +35,7 @@ function removeFriendship(id1, id2) {
 			},
 			'success':function(data) {
 				if(data.result) {
+					location.reload();
 				} else {
 				}
 			},
@@ -42,6 +43,5 @@ function removeFriendship(id1, id2) {
 				alert(error);
 			}
 		});	
-		
-		location.reload();
+	
 }
