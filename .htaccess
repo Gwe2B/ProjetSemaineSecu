@@ -1,0 +1,4 @@
+SetEnv DB semainesecu
+SetEnv DB_HOST localhost
+SetEnv DB_PASS 
+SetEnv DB_USER root

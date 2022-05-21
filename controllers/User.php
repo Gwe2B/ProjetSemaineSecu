@@ -82,7 +82,7 @@ class User implements JsonSerializable {
     }
 
     public function setTel(?string $val) {
-        if(!empty($val) & preg_match(self::PHONE_REGEX, $val)) {
+        if(!empty($val) && !is_null($val) && preg_match(self::PHONE_REGEX, $val)) {
             $this->tel = htmlspecialchars($val);
         } else {
             $this->tel = null;
