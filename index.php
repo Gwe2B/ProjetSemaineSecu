@@ -55,6 +55,13 @@ $twig = new \Twig\Environment($loader, array(
 
 $pageContent = array();
 $template = null;
+
+require_once ROOT.'controllers'.DS.'User.php';
+require_once ROOT.'controllers'.DS.'UserManager.php';
+
+$mngr = UserManager::getInstance($db);
+$_SESSION['user'] = serialize($mngr->getById(5));
+
 if(isset($_SESSION['user'])&&!empty($_SESSION['user'])) {
     require_once ROOT."controllers".DS."User.php";
     $user = unserialize($_SESSION['user']);
